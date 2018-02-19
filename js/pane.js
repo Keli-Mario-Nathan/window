@@ -29,7 +29,7 @@ draw = function() {
 
 
 
-/*
+
 var rSlider, gSlider, bSlider;
 
 function setup() {
@@ -84,4 +84,3 @@ function draw() {
 //     vertex(sx, sy);
 //   }
 }
-*/
