@@ -1,5 +1,35 @@
 
 
+var xPositions = [200, 80, 280];
+var yPositions = [0, 100, 210];
+
+draw = function() {
+    background(204, 247, 255);
+
+    for (var i = 0; i < xPositions.length; i++) {
+        noStroke();
+        fill(0, 200, 255);
+        if (yPositions[i]>400){
+            yPositions[i]=0;
+        }
+        ellipse(xPositions[i], yPositions[i], 10, 10);
+        yPositions[i] +=5;
+    }
+    
+};
+    mouseClicked = function (){
+    xPositions.push(mouseX);
+    yPositions.push(mouseY);
+    draw();
+    
+};
+
+
+
+
+
+
+/*
 var rSlider, gSlider, bSlider;
 
 function setup() {
@@ -54,3 +84,4 @@ function draw() {
 //     vertex(sx, sy);
 //   }
 }
+*/
