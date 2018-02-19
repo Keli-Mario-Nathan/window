@@ -24,12 +24,7 @@ draw = function() {
     
 };
 
-
-
-
-
-
-
+ /*
 var rSlider, gSlider, bSlider;
 
 function setup() {
@@ -37,9 +32,6 @@ function setup() {
   createCanvas(710, 400);
   textSize(15);
   noStroke();
-
-
-
 
   // create sliders
   rSlider = createSlider(0, 255, 100);
@@ -61,6 +53,7 @@ function draw() {
   var b = bSlider.value();
   
   background(r, g, b);
+
   // text("red", rSlider.x * 1 + rSlider.width, 35);
   // text("green", gSlider.x * 1 + gSlider.width, 65);
   // text("blue", bSlider.x * 1 + bSlider.width, 95);
@@ -84,3 +77,4 @@ function draw() {
 //     vertex(sx, sy);
 //   }
 }
+*/
