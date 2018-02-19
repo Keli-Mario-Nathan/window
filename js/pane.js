@@ -16,10 +16,10 @@ function setup() {
     textSize(15);
     noStroke();
     for (let i = 0; i < dropNum; i++) {
-        xPosition = random(0, 710);
-        yPosition = random(0, 400);
-        dropColor = color(255);
-        speed = 4;
+        const xPosition = random(0, 710);
+        const yPosition = random(0, 400);
+        const dropColor = color(255);
+        const speed = 4;
         drops.push(new Drop (xPosition, yPosition, dropColor, speed));
     }
 
@@ -28,17 +28,17 @@ function setup() {
 
     // create sliders
     rSlider = createSlider(0, 255, 100);
-    rSlider.parent('container');    
+    rSlider.parent('container');
     rSlider.position(20, 20);
     rSlider.class('red');
 
     gSlider = createSlider(0, 255, 0);
-    gSlider.parent('container');    
+    gSlider.parent('container');
     gSlider.position(20, 50);
     gSlider.class('red');
-    
+
     bSlider = createSlider(0, 255, 255);
-    bSlider.parent('container');    
+    bSlider.parent('container');
     bSlider.position(20, 80);
     bSlider.style('red');
 
@@ -52,7 +52,7 @@ function draw() {
 
     background(r, g, b);
     for (let i = 0; i < drops.length; i++) {
-        drop = drops[i];
+        const drop = drops[i];
         fill(drop.dropColor);
         const dropSize = 10;
         ellipse(drop.xPosition, drop.yPosition, dropSize, dropSize);
