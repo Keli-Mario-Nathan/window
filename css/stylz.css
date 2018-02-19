@@ -6,3 +6,13 @@
 * {
     background-color: rgb(243, 232, 232);
 }
+
+body {
+    display: flex;
+    justify-content: center;
+}
+
+#container {
+    width: fit-content;
+    position: relative;
+}
