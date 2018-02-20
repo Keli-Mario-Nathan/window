@@ -40,6 +40,44 @@ Rain.prototype.render = function() {
     }
 };
 
+function Snow(numOfComponents, backgroundColorH, backgroundColorS, backgroundColorL) {
+    Weather.call(this, numOfComponents, backgroundColorH, backgroundColorS, backgroundColorL);
+}
+
+Snow.prototype = Object.create(Weather.prototype);
+
+Snow.prototype.render = function() {
+    background(this.backgroundColorH, this.backgroundColorS, this.backgroundColorL);
+    for (let i = 0; i < this.components.length; i++) {
+        const flake = this.components[i];
+        fill(flake.colorH, flake.colorS, flake.colorL);
+        ellipse(flake.xPosition, flake.yPosition, flake.size, flake.size);
+        flake.yPosition += flake.speed;
+        if (flake.yPosition - flake.size/2 > canvasHeight) {
+            flake.yPosition = 0 - flake.size/2;
+        }
+    }
+};
+
+function Clouds(numOfComponents, backgroundColorH, backgroundColorS, backgroundColorL) {
+    Weather.call(this, numOfComponents, backgroundColorH, backgroundColorS, backgroundColorL);
+}
+
+Clouds.prototype = Object.create(Weather.prototype);
+
+Clouds.prototype.render = function() {
+    background(this.backgroundColorH, this.backgroundColorS, this.backgroundColorL);
+    for (let i = 0; i < this.components.length; i++) {
+        const cloud = this.components[i];
+        fill(cloud.colorH, cloud.colorS, cloud.colorL);
+        ellipse(cloud.xPosition, cloud.yPosition, cloud.size, cloud.size/2);
+        cloud.xPosition += cloud.speed;
+        if (cloud.xPosition - cloud.size / 2 > canvasWidth) {
+            cloud.xPosition = 0 - cloud.size / 2;
+        }
+    }
+};
+
 function Component(size, colorH, colorS, colorL, speed) {
     this.size = size;
     this.colorH = colorH;
