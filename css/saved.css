@@ -1,23 +1,30 @@
-* {
-    background-color: rgb(243, 232, 232);
-}
-
 body {
     display: flex;
     justify-content: center;
+    background-color: rgb(243, 232, 232);
 }
 
 table {
+    margin: 0 auto;
     border: solid black 2px;
+    border-collapse: collapse;
     table-layout: fixed;
-    width: 100%;
+    width: 50%;
 }
 
-th{
-    
+th {
+    border: solid black 2px;
+    border-collapse: collapse;
 }
-   
-#container {
-    width: fit-content;
-    position: relative;
+  
+td {
+    text-align: center;
 }
+
+tbody tr:nth-child(odd) {
+  background: #eee;
+}
+
+tbody tr:nth-child(even) {
+    background: rgb(224, 223, 223);
+  }
