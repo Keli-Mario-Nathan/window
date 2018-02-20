@@ -53,8 +53,8 @@ Snow.prototype.render = function() {
         fill(flake.colorH, flake.colorS, flake.colorL);
         ellipse(flake.xPosition, flake.yPosition, flake.size, flake.size);
         flake.yPosition += flake.speed;
-        if (flake.yPosition - flake.size/2 > canvasHeight) {
-            flake.yPosition = 0 - flake.size/2;
+        if (flake.yPosition - flake.size / 2 > canvasHeight) {
+            flake.yPosition = 0 - flake.size / 2;
         }
     }
 };
@@ -70,7 +70,7 @@ Clouds.prototype.render = function() {
     for (let i = 0; i < this.components.length; i++) {
         const cloud = this.components[i];
         fill(cloud.colorH, cloud.colorS, cloud.colorL);
-        ellipse(cloud.xPosition, cloud.yPosition, cloud.size, cloud.size/2);
+        ellipse(cloud.xPosition, cloud.yPosition, cloud.size, cloud.size / 2);
         cloud.xPosition += cloud.speed;
         if (cloud.xPosition - cloud.size / 2 > canvasWidth) {
             cloud.xPosition = 0 - cloud.size / 2;
@@ -89,8 +89,10 @@ function Component(size, colorH, colorS, colorL, speed) {
 }
 
 const defaultRain = new Rain(25, 183, 4, 62);
+const defaultSnow = new Snow(60, 183, 4, 86);
+const defaultClouds = new Clouds(100, 212, 79, 73);
 
-const scene = defaultRain;
+let scene = defaultRain;
 
 function setup() {
     colorMode(HSL);
@@ -103,3 +105,20 @@ function setup() {
 function draw() {
     scene.render();
 }
+
+const dropdown = document.getElementById('choose');
+dropdown.addEventListener('input', function() {
+    if (this.value === 'rain') {
+        scene = defaultRain;
+        scene.components = [];
+        scene.collectComponents(5, 181, 100, 50, 8);
+    } else if (this.value === 'snow') {
+        scene = defaultSnow;
+        scene.components = [];
+        scene.collectComponents(10, 0, 10, 97, 4);
+    } else if (this.value === 'clouds') {
+        scene = defaultClouds;
+        scene.components = [];
+        scene.collectComponents(150, 183, 4, 93, 1);
+    }
+});
