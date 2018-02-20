@@ -23,25 +23,21 @@ function setup() {
         drops.push(new Drop (xPosition, yPosition, dropColor, speed));
     }
 
-
-
-
     // create sliders
     rSlider = createSlider(0, 255, 100);
-    rSlider.parent('container');    
+    rSlider.parent('container');
     rSlider.position(20, 20);
     rSlider.class('red');
 
     gSlider = createSlider(0, 255, 0);
-    gSlider.parent('container');    
+    gSlider.parent('container');
     gSlider.position(20, 50);
     gSlider.class('red');
-    
+
     bSlider = createSlider(0, 255, 255);
-    bSlider.parent('container');    
+    bSlider.parent('container');
     bSlider.position(20, 80);
     bSlider.style('red');
-
 }
 
 
