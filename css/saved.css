@@ -1,8 +1,3 @@
-/* #defaultCanvas0{
-   display: block;
-   margin: 0px auto;
-} */
-
 * {
     background-color: rgb(243, 232, 232);
 }
@@ -10,8 +5,18 @@
 body {
     display: flex;
     justify-content: center;
-} 
+}
 
+table {
+    border: solid black 2px;
+    table-layout: fixed;
+    width: 100%;
+}
+
+th{
+    
+}
+   
 #container {
     width: fit-content;
     position: relative;
