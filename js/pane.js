@@ -1,11 +1,35 @@
 'use strict';
 
-$( function() {
-    $( "#slider-range" ).slider({
+$(function() {
+    $('#quantity-slider').slider({
         range: true,
         min: 0,
         max: 360,
-        values: [ 100, 200 ],
+        values: [100, 200],
+    });
+});
+$(function() {
+    $('#speed-slider').slider({
+        range: true,
+        min: 0,
+        max: 360,
+        values: [100, 200],
+    });
+});
+$(function() {
+    $('#size-slider').slider({
+        range: true,
+        min: 0,
+        max: 360,
+        values: [100, 200],
+    });
+});
+$(function() {
+    $('#color-slider').slider({
+        range: true,
+        min: 0,
+        max: 360,
+        values: [100, 200],
     });
 });
 
