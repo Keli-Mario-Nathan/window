@@ -1,89 +1,67 @@
-let rSlider, gSlider, bSlider;
-const drops = [];
-const dropNum = 25;
+'use strict';
 
-function Drop (xPosition, yPosition, dropColor, speed) {
-    this.xPosition = xPosition;
-    this.yPosition = yPosition;
-    this.dropColor = dropColor;
-    this.speed = speed;
+const canvasWidth = 800;
+const canvasHeight = 400;
+
+function randNum(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function setup() {
-    // create canvas
-    const canvas = createCanvas(710, 400);
-    canvas.parent('container');
-    textSize(15);
-    noStroke();
-    for (let i = 0; i < dropNum; i++) {
-        const xPosition = random(0, 710);
-        const yPosition = random(0, 400);
-        const dropColor = color(255);
-        const speed = 4;
-        drops.push(new Drop (xPosition, yPosition, dropColor, speed));
+function Weather(numOfComponents, backgroundColorH, backgroundColorS, backgroundColorL) {
+    this.components = [];
+    this.numOfComponents = numOfComponents;
+    this.backgroundColorH = backgroundColorH;
+    this.backgroundColorS = backgroundColorS;
+    this.backgroundColorL = backgroundColorL;
+}
+
+Weather.prototype.collectComponents = function(size, colorH, colorS, colorL, speed) {
+    for (let i = 0; i < this.numOfComponents; i++) {
+        this.components.push(new Component(size, colorH, colorS, colorL, speed));
     }
+};
 
-
-
-
-    // create sliders
-    rSlider = createSlider(0, 255, 100);
-    rSlider.parent('container');
-    rSlider.position(20, 20);
-    rSlider.class('red');
-
-    gSlider = createSlider(0, 255, 0);
-    gSlider.parent('container');
-    gSlider.position(20, 50);
-    gSlider.class('red');
-
-    bSlider = createSlider(0, 255, 255);
-    bSlider.parent('container');
-    bSlider.position(20, 80);
-    bSlider.style('red');
-
+function Rain(numOfComponents, backgroundColorH, backgroundColorS, backgroundColorL) {
+    Weather.call(this, numOfComponents, backgroundColorH, backgroundColorS, backgroundColorL);
 }
 
+Rain.prototype = Object.create(Weather.prototype);
 
-function draw() {
-    const r = rSlider.value();
-    const g = gSlider.value();
-    const b = bSlider.value();
-
-    background(r, g, b);
-    for (let i = 0; i < drops.length; i++) {
-        const drop = drops[i];
-        fill(drop.dropColor);
-        const dropSize = 10;
-        ellipse(drop.xPosition, drop.yPosition, dropSize, dropSize);
+Rain.prototype.render = function() {
+    background(this.backgroundColorH, this.backgroundColorS, this.backgroundColorL);
+    for (let i = 0; i < this.components.length; i++) {
+        const drop = this.components[i];
+        fill(drop.colorH, drop.colorS, drop.colorL);
+        ellipse(drop.xPosition, drop.yPosition, drop.size, drop.size);
         drop.yPosition += drop.speed;
-        if (drop.yPosition > 400) {
-            drop.yPosition = 0;
+        if (drop.yPosition - drop.size / 2 > canvasHeight) {
+            drop.yPosition = 0 - drop.size / 2;
         }
     }
-
-
-    // background(r, g, b);
-    // text("red", rSlider.x * 1 + rSlider.width, 35);
-    // text("green", gSlider.x * 1 + gSlider.width, 65);
-    // text("blue", bSlider.x * 1 + bSlider.width, 95);
-//   push();
-//   translate(width*0.2, height*0.5);
-//   rotate(frameCount / 10.0);
-//   star(15, 20, 2, 20, 4);
-//   pop();
-
-// };
-// function star(x, y, radius1, radius2, npoints) {
-//   var angle = TWO_PI / npoints;
-//   var halfAngle = angle/2.0;
-//   beginShape();
-//   for (var a = 0; a < TWO_PI; a += angle) {
-//     var sx = x + cos(a) * radius2;
-//     var sy = y + sin(a) * radius2;
-//     vertex(sx, sy);
-//     sx = x + cos(a+halfAngle) * radius1;
-//     sy = y + sin(a+halfAngle) * radius1;
-//     vertex(sx, sy);
-//   }
 };
+
+function Component(size, colorH, colorS, colorL, speed) {
+    this.size = size;
+    this.colorH = colorH;
+    this.colorS = colorS;
+    this.colorL = colorL;
+    this.speed = speed;
+    this.xPosition = randNum(0, canvasWidth + this.size);
+    this.yPosition = randNum(0, canvasHeight + this.size);
+}
+
+const defaultRain = new Rain(25, 183, 4, 62);
+
+const scene = defaultRain;
+
+function setup() {
+    colorMode(HSL);
+    const canvas = createCanvas(canvasWidth, canvasHeight);
+    canvas.parent('container');
+    noStroke();
+    scene.collectComponents(5, 181, 100, 50, 8);
+}
+
+function draw() {
+    scene.render();
+}
