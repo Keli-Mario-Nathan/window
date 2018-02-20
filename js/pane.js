@@ -1,5 +1,14 @@
 'use strict';
 
+$( function() {
+    $( "#slider-range" ).slider({
+        range: true,
+        min: 0,
+        max: 360,
+        values: [ 100, 200 ],
+    });
+});
+
 const canvasWidth = 800;
 const canvasHeight = 400;
 
