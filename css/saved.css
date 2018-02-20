@@ -6,25 +6,33 @@ body {
 
 table {
     margin: 0 auto;
-    border: solid black 2px;
     border-collapse: collapse;
+    border: solid silver .5px;
+    border-bottom: 2px solid rgb(65, 236, 193);
     table-layout: fixed;
     width: 50%;
 }
 
 th {
-    border: solid black 2px;
+    background-color: rgb(65, 236, 193);
+    color: white;
+    border: 1px solid #eee;
     border-collapse: collapse;
 }
   
 td {
     text-align: center;
+    color: rgb(153, 150, 150);
+    border: 1px solid #eee;
 }
 
 tbody tr:nth-child(odd) {
-  background: #eee;
+  background: white;
 }
 
 tbody tr:nth-child(even) {
-    background: rgb(224, 223, 223);
+    background: whitesmoke;
+}
+  tbody tr:hover {
+    background: rgba(255, 204, 184, 0.589);
   }
