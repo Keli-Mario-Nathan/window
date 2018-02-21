@@ -1,0 +1,22 @@
+{
+  "name": "pane-relief",
+  "version": "1.0.0",
+  "description": "Team Name: Mario-Keli-Nathan (MKN)",
+  "main": "examples.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Keli-Mario-Nathan/window.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Keli-Mario-Nathan/window/issues"
+  },
+  "homepage": "https://github.com/Keli-Mario-Nathan/window#readme",
+  "devDependencies": {
+    "eslint-config-p5js": "^1.0.1"
+  }
+}

@@ -1,9 +1,14 @@
 {
     "env": {
       "browser": true,
-      "es6": true
+      "es6": true,
+      "jquery": true
     },
-    //  To learn more about the rules: https://eslint.org/docs/rules/
+    "extends": [
+      "p5js",
+      "p5js/dom",
+      "p5js/sound"
+    ],
     "rules": {
       "semi": ["error", "always"],
       "quotes": ["warn", "single"],
