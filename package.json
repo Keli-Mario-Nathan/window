@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Keli-Mario-Nathan/window#readme",
   "devDependencies": {
+    "eslint": "^4.18.1",
     "eslint-config-p5js": "^1.0.1"
   }
 }
