@@ -10,4 +10,13 @@ function createRows() {
     cell2.innerHTML = 'Feb. 2018';
     cell3.innerHTML = '?';;
 }
+
+function time(){
+    const date = '2018-02-21';
+    const format = 'LLLL';
+    const result = moment(date).format(format);
+    console.log(result);
+}
+
 createRows();
+time();
