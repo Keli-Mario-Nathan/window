@@ -1,20 +1,13 @@
 
 
-
 function createRows() {
-    const tbody = document.querySelector('Panes');
-    const tr = document.createElement('tr');
-    tbody.appendChild(tr);
-    const unserInput = document.createElement('td');
-    unserInput.textContent = '         ';
-    tr.appendChild(unserInput);
-
-    for(let i = 0; i < '              '; i++) {
-        const td = document.createElement('td');
-        td.textContent = this.cookiesArray[i];
-        tr.appendChild(td);
-
-    }
+    var tbody = document.getElementById("Panes");
+    var row = tbody.insertRow(0);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    cell1.innerHTML = "NEW CELL1";
+    cell2.innerHTML = "NEW CELL2";
+    cell3.innerHTML = "NEW CELL3";;
 }
-
 createRows();

@@ -35,3 +35,8 @@ tbody tr:nth-child(even) {
   tbody tr:hover {
     background: rgba(255, 204, 184, 0.589);
   }
+
+  #addP{
+    margin: 0 auto;
+    
+  }
