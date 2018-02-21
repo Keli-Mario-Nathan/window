@@ -3,19 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Main Pane</title>
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
     <link href="css/stylz.css" type="text/css" rel="stylesheet">    
 </head>
 <body>
     <div id="container">
+        
+    </div>
+    <div id="controls">
         <select id="choose">
             <option value="rain" selected>Rain</option> 
             <option value="snow">Snow</option>
             <option value="clouds">Puffy Clouds</option>
         </select>
+        <div> <p># of thingies</p>
+            <div id="quantity-slider"></div>
+        </div>
+        <div> <p>background hue</p> 
+            <div id="bg-hue-slider"></div>
+        </div>
+        <div> <p>background saturation</p> 
+            <div id="bg-sat-slider"></div>
+        </div>
+        <div> <p>background lightness</p> 
+            <div id="bg-light-slider"></div>
+        </div>
+        <div> <p>speed of thingies</p>        
+            <div id="speed-slider"></div>
+        </div>
+        <div> <p>size of thingies</p> 
+            <div id="size-slider"></div>
+        </div>
+        <div> <p>thingy hue</p> 
+            <div id="component-hue-slider"></div>
+        </div>
+        <div> <p>thingy saturation</p> 
+            <div id="component-sat-slider"></div>
+        </div>
+        <div> <p>thingy lightness</p> 
+            <div id="component-light-slider"></div>
+        </div>
     </div>
-    
-    <input type="range" min="-10" max="50">
-
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="addons/jquery-ui.min.js"></script>
     <script src="js/p5.min.js"></script>
     <script src="addons/p5.dom.min.js"></script>
     <!-- <script src="../addons/p5.sound.min.js"></script> -->

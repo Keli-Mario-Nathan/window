@@ -16,3 +16,12 @@ body {
     width: fit-content;
     position: relative;
 }
+
+#controls {
+    width: 200px;
+    margin-left: 20px;
+}
+
+#controls>div {
+    margin-top: 10px;
+}
