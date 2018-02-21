@@ -15,7 +15,7 @@
 // });
 
 $(function() {
-    const speedSlider = $('#speed-slider').slider({
+    $('#speed-slider').slider({
         range: true,
         step: 0.1,
         change: function( event, ui ) {
@@ -25,21 +25,6 @@ $(function() {
         }
     });
 });
-
-// jQuery(document).ready(function ($) {
-//     var price = $("#price").slider({
-//         id: "AmazonPrice",
-//         min: 0,
-//         max: 5000,
-//         range: true,
-//         value: [0, 5000],
-//     });
-
-//     price.change(function () {
-//         val = $(this).slider("option", "value");
-//         console.log(val);
-//     });
-// });
 
 // $(function() {
 //     $('#size-slider').slider({
