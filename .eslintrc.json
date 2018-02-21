@@ -9,7 +9,6 @@
       "p5js/dom",
       "p5js/sound"
     ],
-    //  To learn more about the rules: https://eslint.org/docs/rules/
     "rules": {
       "semi": ["error", "always"],
       "quotes": ["warn", "single"],
