@@ -10,7 +10,7 @@
 body {
     display: flex;
     justify-content: center;
-}
+} 
 
 #container {
     width: fit-content;
