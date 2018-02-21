@@ -1,4 +1,4 @@
-
+'use strict';
 
 function createRows() {
     const tbody = document.getElementById('Panes');
