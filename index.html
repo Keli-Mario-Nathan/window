@@ -2,27 +2,54 @@
 <html>
   <head>
     <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
-    <link href="css/stylz.css" type="text/css" rel="stylesheet">
+    <link href="reset.css" type="text/css" rel="stylesheet">
+    <link href="css/index.css" type="text/css" rel="stylesheet">
     <script src="js/p5.min.js"></script>
     <script src="addons/p5.dom.min.js"></script>
     <script src="addons/p5.sound.min.js"></script>
     <script src="js/pane.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
   
   </head>
 
 
  
   <body>
-<form>
-<fieldset>
-<legend>CONTROL PANEL</legend>
-<input type="button" value="click me"></html>
+    <h1>Pane Relief</h1>
+<nav>
+<ul>
+  <a href="index.html" alt="home"><li>Main Pane</li></a>
+  <a href="saved.html" alt="history"><li>My Panes</li></a>  
+</ul>
+</nav>
+<hr>
+
+  <div id="popup">
+    <p>...</p>
+  </div>
+
+<div id="invisible">
+    <p>
+  Greetings and welcome to <strong>Pane Relief</strong>..... 
+  <br>
+  <br>
+  Your personalized perspective on a world that you can control! <br>
+  <br>
+  Start by selecting a basic weather profile and continue to adjust the features
+  on the following page to suit, or change your mood. <br>
+    </p>
+  </div>
+
+  <div id="container2">
+      <select id="choose2">
+          <option value="rain">Rain</option> 
+          <option value="snow"selected>Snow</option>
+          <option value="clouds">Puffy Clouds</option>
+      </select>
+  </div>
 
 
-</fieldset>
-
-</form>
-   
-    
-  </body>
+ 
+  
+</body>
 </html>
