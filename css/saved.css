@@ -1,0 +1,42 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    border: solid silver .5px;
+    border-bottom: 2px solid rgb(65, 236, 193);
+    table-layout: fixed;
+    width: 50%;
+}
+
+th {
+    background-color: rgb(65, 236, 193);
+    color: white;
+    border: 1px solid #eee;
+    border-collapse: collapse;
+}
+  
+td {
+    text-align: center;
+    color: rgb(153, 150, 150);
+    border: 1px solid #eee;
+}
+
+tbody tr:nth-child(odd) {
+  background: white;
+}
+
+tbody tr:nth-child(even) {
+    background: whitesmoke;
+}
+  tbody tr:hover {
+    background: rgba(255, 204, 184, 0.589);
+  }
+
+  #addP{
+    margin: 0 auto;
+    
+  }
