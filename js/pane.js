@@ -1,24 +1,27 @@
 'use strict';
 
-
-
-// $(function() {
-//     $('#quantity-slider').slider({
-//         range: true,
-//         min: 1,
-//         max: 12,
-//         values: [speedMin, speedMax],
-//         change: function( event, ui ) {
-//             console.log(ui.values);
-//         }
-//     });
-// });
+$(function() {
+    $('#quantity-slider').slider({
+        min: 1,
+        max: 100,
+        change: function(event, ui) {
+            if (scene.numOfComponents > ui.value) {
+                scene.components.splice(ui.value);
+            } else if (scene.numOfComponents < ui.value) {
+                for (let i = 0; i < (ui.value - scene.numOfComponents); i++) {
+                    scene.components.push(new Component(5, 181, 100, 50));
+                }
+            }
+            scene.numOfComponents = ui.value;
+        }
+    });
+});
 
 $(function() {
     $('#speed-slider').slider({
         range: true,
         step: 0.1,
-        change: function( event, ui ) {
+        change: function(event, ui) {
             for (let i = 0; i < scene.components.length; i++) {
                 scene.components[i].speed = randFloat(ui.values[0], ui.values[1]);
             }
@@ -73,7 +76,8 @@ Weather.prototype.setRanges = function() {
     $('#speed-slider').slider('option', 'min', this.speedMin);
     $('#speed-slider').slider('option', 'max', this.speedMax);
     const midRange = (this.speedMax - this.speedMin) / 2;
-    $('#speed-slider').slider('option', 'values', [midRange - 1 + this.speedMin, midRange + 1 + this.speedMin]);
+    $('#speed-slider').slider('option', 'values', [midRange - 0.5 + this.speedMin, midRange + 0.5 + this.speedMin]);
+    $('#quantity-slider').slider('option', 'value', scene.numOfComponents);
 };
 
 function Rain(numOfComponents, backgroundColorH, backgroundColorS, backgroundColorL) {
@@ -121,7 +125,7 @@ Snow.prototype.render = function() {
 function Clouds(numOfComponents, backgroundColorH, backgroundColorS, backgroundColorL) {
     Weather.call(this, numOfComponents, backgroundColorH, backgroundColorS, backgroundColorL);
     this.speedMin = 0.1;
-    this.speedMax = 5;
+    this.speedMax = 2;
 }
 
 Clouds.prototype = Object.create(Weather.prototype);
@@ -154,6 +158,7 @@ const defaultSnow = new Snow(60, 183, 4, 86);
 const defaultClouds = new Clouds(100, 212, 79, 73);
 
 let scene = defaultRain;
+$('#quantity-slider').slider();
 $('#speed-slider').slider();
 scene.setRanges();
 
