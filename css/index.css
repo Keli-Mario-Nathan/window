@@ -1,0 +1,103 @@
+body{
+    font-family: 'Ubuntu', sans-serif;
+}
+
+hr {
+    display: block;
+    width: 98%;
+    position: relative;
+    top:120px;
+    height: 1px;
+    border: 0;
+    border-top: 2px solid rgb(167, 165, 165);
+    /* margin: 1em 0; */
+    padding: 0;
+}
+
+select {
+    -moz-appearance: none;
+    -webkit-appearance:none;
+}
+
+#popup{
+    position: absolute;
+    right: 50%;
+    top: 200px;
+    font-size:40px;
+    color: lightgrey;
+    width: 20px;
+    margin: 1px;
+}
+
+#container2{
+display: inline;
+position: absolute;
+left: 550px;
+top:200px;
+
+}
+
+#choose2{
+    width: 200px;
+    height: 40px;
+}
+
+
+h1{
+    display: inline;
+    color: rgb(102, 100, 100);
+    position: absolute;
+    margin: 0px;
+    left: 20px;
+    font-size: 100px;
+}
+li{
+    display: inline;
+    margin: 50px;
+    
+}
+
+nav{
+    display: inline;
+    position: absolute;
+    right: 200px;
+    top: 100px;
+    
+}
+
+ul{
+    display: inline;
+   
+}
+a{
+    text-decoration: none;
+    color: rgb(75, 125, 141);
+}
+
+#invisible{
+    display: none;
+    line-height: 30px;
+    position: absolute;
+    color: rgb(19, 18, 18);
+    right: 10%;
+    top: 200px;
+}
+
+strong{
+    font-weight:10px;
+}
+
+p{
+padding: 20px;
+}
+
+
+#popup:hover + #invisible{
+display: block;
+background-color:lightblue;
+color: black;
+width: 400px;
+height: 300px;
+opacity: .33;
+border-radius: 10px;
+}
