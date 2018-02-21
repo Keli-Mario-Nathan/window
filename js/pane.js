@@ -94,7 +94,7 @@ const defaultClouds = new Clouds(100, 212, 79, 73);
 
 let scene = defaultRain;
 
-function setup() {
+function setup() { //eslint-disable-line
     colorMode(HSL);
     const canvas = createCanvas(canvasWidth, canvasHeight);
     canvas.parent('container');
@@ -102,7 +102,7 @@ function setup() {
     scene.collectComponents(5, 181, 100, 50, 8);
 }
 
-function draw() {
+function draw() { //eslint-disable-line
     scene.render();
 }
 
