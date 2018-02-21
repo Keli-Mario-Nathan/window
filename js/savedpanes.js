@@ -10,4 +10,5 @@ function createRows() {
     cell2.innerHTML = 'Feb. 2018';
     cell3.innerHTML = '?';;
 }
+
 createRows();
