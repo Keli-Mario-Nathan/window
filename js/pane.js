@@ -181,7 +181,7 @@ $('#component-sat-slider').slider();
 $('#component-light-slider').slider();
 scene.setControls();
 
-function setup() {
+function setup() { //eslint-disable-line
     colorMode(HSL);
     const canvas = createCanvas(canvasWidth, canvasHeight);
     canvas.parent('container');
@@ -189,7 +189,7 @@ function setup() {
     scene.collectComponents();
 }
 
-function draw() {
+function draw() { //eslint-disable-line
     scene.render();
 }
 
