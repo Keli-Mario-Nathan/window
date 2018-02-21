@@ -1,11 +1,25 @@
 'use strict';
 
+
+let speedMin = 3;
+let speedMax = 4;
+
 $(function() {
     $('#quantity-slider').slider({
         range: true,
-        min: 0,
-        max: 360,
-        values: [100, 200],
+        min: 1,
+        max: 12,
+        values: [speedMin, speedMax],
+        change: function( event, ui ) {
+            if (ui.handleIndex === 0) {
+                speedMin = ui.values[0];
+            } else if (ui.handleIndex === 1) {
+                speedMax = ui.values[1];
+            }
+            for (let i = 0; i < scene.components.length; i++) {
+                scene.components[i].speed = randNum(speedMin, speedMax);
+            }
+        }
     });
 });
 $(function() {
@@ -14,6 +28,9 @@ $(function() {
         min: 0,
         max: 360,
         values: [100, 200],
+        change: function( event, ui ) {
+            console.log(ui.values);
+        }
     });
 });
 $(function() {
@@ -48,9 +65,9 @@ function Weather(numOfComponents, backgroundColorH, backgroundColorS, background
     this.backgroundColorL = backgroundColorL;
 }
 
-Weather.prototype.collectComponents = function(size, colorH, colorS, colorL, speed) {
+Weather.prototype.collectComponents = function(size, colorH, colorS, colorL) {
     for (let i = 0; i < this.numOfComponents; i++) {
-        this.components.push(new Component(size, colorH, colorS, colorL, speed));
+        this.components.push(new Component(size, colorH, colorS, colorL));
     }
 };
 
@@ -111,12 +128,12 @@ Clouds.prototype.render = function() {
     }
 };
 
-function Component(size, colorH, colorS, colorL, speed) {
+function Component(size, colorH, colorS, colorL) {
     this.size = size;
     this.colorH = colorH;
     this.colorS = colorS;
     this.colorL = colorL;
-    this.speed = speed;
+    this.speed = randNum(speedMin, speedMax);
     this.xPosition = randNum(0, canvasWidth + this.size);
     this.yPosition = randNum(0, canvasHeight + this.size);
 }
@@ -144,14 +161,14 @@ dropdown.addEventListener('input', function() {
     if (this.value === 'rain') {
         scene = defaultRain;
         scene.components = [];
-        scene.collectComponents(5, 181, 100, 50, 8);
+        scene.collectComponents(5, 181, 100, 50);
     } else if (this.value === 'snow') {
         scene = defaultSnow;
         scene.components = [];
-        scene.collectComponents(10, 0, 10, 97, 4);
+        scene.collectComponents(10, 0, 10, 97);
     } else if (this.value === 'clouds') {
         scene = defaultClouds;
         scene.components = [];
-        scene.collectComponents(150, 183, 4, 93, 1);
+        scene.collectComponents(150, 183, 4, 93);
     }
 });
