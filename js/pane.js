@@ -13,6 +13,7 @@ function randFloat(min, max) {
 
 function Weather() {
     this.components = [];
+    this.savedAs = 'myPane';
 }
 
 Weather.prototype.collectComponents = function() {
@@ -40,6 +41,7 @@ Weather.prototype.setControls = function() {
 
 function Rain() {
     Weather.call(this);
+    this.weatherType = 'rain';
     this.numOfComponents = 125;
     this.backgroundH = 183;
     this.backgroundS = 4;
@@ -79,6 +81,7 @@ Rain.prototype.render = function() {
 
 function Snow() {
     Weather.call(this);
+    this.weatherType = 'snow';
     this.numOfComponents = 60;
     this.backgroundH = 183;
     this.backgroundS = 4;
@@ -119,6 +122,7 @@ Snow.prototype.render = function() {
 function Clouds() {
     Weather.call(this);
     this.numOfComponents = 100;
+    this.weatherType = 'clouds';
     this.backgroundH = 212;
     this.backgroundS = 79;
     this.backgroundL = 73;
@@ -169,22 +173,31 @@ const rainPane = new Rain();
 const snowPane = new Snow();
 const cloudPane = new Clouds();
 
-let scene;
+
 const dropdown = document.getElementById('choose');
-switch (localStorage.getItem('choice')) {
-case 'rain':
-default:
+
+let scene;
+if (localStorage.getItem('choice')) {
+    switch (localStorage.getItem('choice')) {
+    case 'rain':
+        scene = rainPane;
+        dropdown.value = 'rain';
+        break;
+    case 'snow':
+        scene = snowPane;
+        dropdown.value = 'snow';
+        break;
+    case 'clouds':
+        scene = cloudPane;
+        dropdown.value = 'clouds';
+        break;
+    }
+    localStorage.removeItem('choice');
+} else if (localStorage.getItem('requestedPane')) {
+    scene = JSON.parse(localStorage.getItem('requestedPane'));
+    localStorage.removeItem('requestedPane');
+} else {
     scene = rainPane;
-    dropdown.value = 'rain';
-    break;
-case 'snow':
-    scene = snowPane;
-    dropdown.value = 'snow';
-    break;
-case 'clouds':
-    scene = cloudPane;
-    dropdown.value = 'clouds';
-    break;
 }
 
 $('#quantity-slider').slider();
@@ -225,6 +238,19 @@ dropdown.addEventListener('input', function() {
     scene.setControls();
     if (scene.components.length === 0) {
         scene.collectComponents();
+    }
+});
+
+const saveButton = document.getElementById('save-button');
+saveButton.addEventListener('click', function() {
+    scene.savedAs = prompt('Give your pane a name:');
+    scene.savedAt = moment().format('LLL');
+    if (localStorage.getItem('savedPanes')) {
+        const saved = JSON.parse(localStorage.getItem('savedPanes'));
+        saved.push(scene);
+        localStorage.setItem('savedPanes', JSON.stringify(saved));
+    } else {
+        localStorage.setItem('savedPanes', JSON.stringify([scene]));
     }
 });
 
