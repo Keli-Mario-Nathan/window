@@ -160,19 +160,35 @@ const dropdown = document.getElementById('choose');
 
 let scene = rainPane;
 dropdown.value = 'rain';
+$('#quantity-slider').slider();
+$('#bg-hue-slider').slider();
+$('#bg-sat-slider').slider();
+$('#bg-light-slider').slider();
+$('#speed-slider').slider();
+$('#size-slider').slider();
+$('#component-hue-slider').slider();
+$('#component-sat-slider').slider();
+$('#component-light-slider').slider();
+scene.setControls();
+createSliderLabels();
+fillSliderLabels();
+
 if (localStorage.getItem('choice')) {
     switch (localStorage.getItem('choice')) {
     case 'rain':
         scene = rainPane;
         dropdown.value = 'rain';
+        fillSliderLabels();
         break;
     case 'snow':
         scene = snowPane;
         dropdown.value = 'snow';
+        fillSliderLabels();
         break;
     case 'clouds':
         scene = cloudPane;
         dropdown.value = 'clouds';
+        fillSliderLabels();
         break;
     }
     localStorage.removeItem('choice');
@@ -184,30 +200,23 @@ if (localStorage.getItem('choice')) {
         scene = new Rain(rawScene.quantity.current, rawScene.quantity.max, rawScene.background.hue, rawScene.background.saturation, rawScene.background.lightness, rawScene.speed.min, rawScene.speed.max, rawScene.speed.lower, rawScene.speed.upper, rawScene.size.min, rawScene.size.max, rawScene.size.lower, rawScene.size.upper, rawScene.color.hue.lower, rawScene.color.hue.upper, rawScene.color.saturation.lower, rawScene.color.saturation.upper, rawScene.color.lightness.lower, rawScene.color.lightness.upper);
         scene.savedAs = rawScene.savedAs;
         dropdown.value = 'rain';
+        fillSliderLabels();
         break;
     case 'snow':
         scene = new Snow(rawScene.quantity.current, rawScene.quantity.max, rawScene.background.hue, rawScene.background.saturation, rawScene.background.lightness, rawScene.speed.min, rawScene.speed.max, rawScene.speed.lower, rawScene.speed.upper, rawScene.size.min, rawScene.size.max, rawScene.size.lower, rawScene.size.upper, rawScene.color.hue.lower, rawScene.color.hue.upper, rawScene.color.saturation.lower, rawScene.color.saturation.upper, rawScene.color.lightness.lower, rawScene.color.lightness.upper);
         scene.savedAs = rawScene.savedAs;
         dropdown.value = 'snow';
+        fillSliderLabels();
         break;
     case 'clouds':
         scene = new Clouds(rawScene.quantity.current, rawScene.quantity.max, rawScene.background.hue, rawScene.background.saturation, rawScene.background.lightness, rawScene.speed.min, rawScene.speed.max, rawScene.speed.lower, rawScene.speed.upper, rawScene.size.min, rawScene.size.max, rawScene.size.lower, rawScene.size.upper, rawScene.color.hue.lower, rawScene.color.hue.upper, rawScene.color.saturation.lower, rawScene.color.saturation.upper, rawScene.color.lightness.lower, rawScene.color.lightness.upper);
         scene.savedAs = rawScene.savedAs;
         dropdown.value = 'clouds';
+        fillSliderLabels();
         break;
     }
 }
 
-$('#quantity-slider').slider();
-$('#bg-hue-slider').slider();
-$('#bg-sat-slider').slider();
-$('#bg-light-slider').slider();
-$('#speed-slider').slider();
-$('#size-slider').slider();
-$('#component-hue-slider').slider();
-$('#component-sat-slider').slider();
-$('#component-light-slider').slider();
-scene.setControls();
 
 function setup() { //eslint-disable-line
     colorMode(HSL);
@@ -219,18 +228,22 @@ function setup() { //eslint-disable-line
 
 function draw() { //eslint-disable-line
     scene.render();
+    // noLoop();
 }
 
 dropdown.addEventListener('input', function() {
     switch (this.value) {
     case 'rain':
         scene = rainPane;
+        fillSliderLabels();
         break;
     case 'snow':
         scene = snowPane;
+        fillSliderLabels();
         break;
     case 'clouds':
         scene = cloudPane;
+        fillSliderLabels();
         break;
     }
     scene.setControls();
@@ -380,6 +393,41 @@ $(function() {
         }
     });
 });
+
+function createSliderLabels() {
+    const controlPanel = document.getElementById('controls');
+    const sliders = document.getElementsByClassName('ui-slider');
+    for (let i = 0; i < sliders.length; i++) {
+        const p = document.createElement('p');
+        controlPanel.insertBefore(p, sliders[i]);
+    }
+}
+
+function fillSliderLabels() {
+    let componentType;
+    if (scene instanceof Rain) {
+        componentType = 'drop';
+    } else if (scene instanceof Snow) {
+        componentType = 'flake';
+    } else if (scene instanceof Clouds) {
+        componentType = 'cloud';
+    }
+    const sliderLabels = [
+        'number of ' + componentType + 's',
+        'background hue',
+        'background saturation',
+        'background lightness',
+        'speed of ' + componentType + 's',
+        'size of ' + componentType + 's',
+        componentType + ' hue',
+        componentType + ' saturation',
+        componentType + ' lightness'
+    ];
+    const p = document.querySelectorAll('#controls p');
+    for (let i = 0; i < sliderLabels.length; i++) {
+        p[i].textContent = sliderLabels[i];
+    }
+}
 
 function hexagon(x, y, radius, a) {
     const angle = TWO_PI / 6;
