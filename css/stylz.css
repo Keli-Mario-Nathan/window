@@ -10,16 +10,21 @@
 body {
     display: flex;
     justify-content: center;
+    font-family: 'Lato', sans-serif;
 } 
+    
 
 #container {
+    float: right;
     width: fit-content;
     position: relative;
+    margin-right: 20px;
 }
 
 #controls {
+    float: right;
     width: 200px;
-    margin-left: 20px;
+    margin-left: 40px;
 }
 
 #controls>div {
@@ -55,4 +60,55 @@ button {
 .ui-widget-header {
     /* border: 1px solid #ddd; */
     background: rgb(220, 220, 220);
+}
+
+hr {
+    display: block;
+    width: 98%;
+    position: relative;
+    top:120px;
+    height: 1px;
+    border: 0;
+    border-top: 2px solid rgb(167, 165, 165);
+    /* margin: 1em 0; */
+    padding: 0;
+}
+nav{
+    display: inline;
+    position: absolute;
+    right: 200px;
+    top: 100px;
+    
+}
+
+ul{
+    display: inline;
+   
+}
+a{
+    text-decoration: none;
+    color: rgb(75, 125, 141);
+}
+
+
+#test{
+    position: absolute;
+    top: 180px;
+    
+    
+}
+
+h1{
+    font-family: 'Ubuntu', sans-serif;
+    display: inline;
+    color: rgb(102, 100, 100);
+    position: absolute;
+    margin: 0px;
+    left: 30px;
+    top: 40px;
+    font-size: 40px;
+}
+li{
+    display: inline;
+    margin: 50px;
 }

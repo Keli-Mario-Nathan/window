@@ -1,5 +1,6 @@
 body{
-    font-family: 'Ubuntu', sans-serif;
+   
+    font-family: 'Lato', sans-serif;
 }
 
 hr {
@@ -14,7 +15,11 @@ hr {
     padding: 0;
 }
 
+
 select {
+
+    position: relative;
+    right: 40px;
     -moz-appearance: none;
     -webkit-appearance:none;
 }
@@ -38,18 +43,26 @@ top:200px;
 }
 
 #choices{
-    width: 200px;
-    height: 40px;
+    border-radius: 10px;
+    color: lightcoral;
+    font-size:20px;
+    width: 220px;
+    height: 60px;
 }
 
 
+    
+
+
 h1{
+    font-family: 'Ubuntu', sans-serif;
     display: inline;
     color: rgb(102, 100, 100);
     position: absolute;
     margin: 0px;
-    left: 20px;
-    font-size: 100px;
+    left: 30px;
+    top: 40px;
+    font-size: 40px;
 }
 li{
     display: inline;
