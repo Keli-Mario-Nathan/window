@@ -11,4 +11,21 @@ function createRows() {
     cell3.innerHTML = '?';;
 }
 
+const userSettings = document.getElementById();
+userSettings.addEventListener('submit', function() {
+    event.preventDefault();
+    const numOfComponents = this[].value
+    const backgroundH = this[].value
+    const backgroundS = this[].value
+    const backgroundL = this[].value
+    const speed = this[].value
+    const size = this[].value
+    const colorH = this[].value
+    const colorS = this[].value
+    const colorL = this[].value
+    
+const settings = {numOfComponents: numOfComponents,}
+
+
+});
 createRows();
