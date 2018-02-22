@@ -53,6 +53,12 @@ Weather.prototype.collectComponents = function() {
     for (let i = 0; i < this.quantity.current; i++) {
         this.components.push(new Component());
     }
+    if (this instanceof Snow) {
+        for (let i = 0; i < this.quantity.current; i++) {
+            this.components[i].hexStart = Math.random() * Math.PI / 3;
+            console.log(this.components[i].hexStart);
+        }
+    }
 };
 
 Weather.prototype.setControls = function() {
@@ -105,7 +111,7 @@ Snow.prototype.render = function() {
     for (let i = 0; i < this.components.length; i++) {
         const flake = this.components[i];
         fill(flake.colorH, flake.colorS, flake.colorL);
-        ellipse(flake.xPosition, flake.yPosition, flake.size, flake.size);
+        hexagon(flake.xPosition, flake.yPosition, flake.size, flake.hexStart);
         flake.yPosition += flake.speed;
         if (flake.yPosition - flake.size / 2 > canvasHeight) {
             flake.yPosition = 0 - flake.size / 2;
@@ -421,4 +427,15 @@ function fillSliderLabels() {
     for (let i = 0; i < sliderLabels.length; i++) {
         p[i].textContent = sliderLabels[i];
     }
+}
+
+function hexagon(x, y, radius, a) {
+    const angle = TWO_PI / 6;
+    beginShape();
+    for (a; a < TWO_PI; a += angle) {
+        const vx = x + cos(a) * radius;
+        const vy = y + sin(a) * radius;
+        vertex(vx, vy);
+    }
+    endShape(CLOSE);
 }
