@@ -1,5 +1,5 @@
 body{
-    
+
     display: flex;
     justify-content: center;
     font-family: 'Ubuntu', sans-serif;
@@ -22,14 +22,16 @@ select {
 }
 
 #chooser{
-    margin: 0 auto;
-    text-align: center;
+ position: absolute;
+ top: 150px;
+ left: 300px;
+   
 }
 
 #popup{
     position: absolute;
-    right: 50%;
-    top: 200px;
+    right: 54%;
+    top: 350px;
     font-size:40px;
     color: lightgrey;
     width: 20px;
@@ -106,6 +108,6 @@ background-color:lightblue;
 color: black;
 width: 400px;
 height: 300px;
-opacity: .33;
+opacity: .65;
 border-radius: 10px;
 }
