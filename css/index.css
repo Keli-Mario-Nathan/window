@@ -19,6 +19,10 @@ select {
     -webkit-appearance:none;
 }
 
+#chooser{
+    text-align: center;
+}
+
 #popup{
     position: absolute;
     right: 50%;

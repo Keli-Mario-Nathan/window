@@ -1,17 +1,50 @@
-/* #defaultCanvas0{
-   display: block;
-   margin: 0px auto;
-} */
-
-* {
-    background-color: white;
-}
 
 body {
     display: flex;
     justify-content: center;
+    font-family: 'Ubuntu', sans-serif;
 } 
 
+hr {
+    display: block;
+    width: 98%;
+    position: relative;
+    top:120px;
+    height: 1px;
+    border: 0;
+    border-top: 2px solid rgb(167, 165, 165);
+    padding: 0;
+}
+
+h1{
+    display: inline;
+    color: rgb(102, 100, 100);
+    position: absolute;
+    margin: 0px;
+    left: 20px;
+    font-size: 100px;
+}
+
+li{
+    display: inline;
+    margin: 50px;
+}
+
+nav{
+    display: inline;
+    position: absolute;
+    right: 200px;
+    top: 100px;
+}
+
+ul{
+    display: inline; 
+}
+
+a{
+    text-decoration: none;
+    color: rgb(75, 125, 141);
+}
 #container {
     width: fit-content;
     position: relative;
