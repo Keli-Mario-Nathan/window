@@ -20,8 +20,9 @@ h1{
     color: rgb(102, 100, 100);
     position: absolute;
     margin: 0px;
+    top: 70px;
     left: 20px;
-    font-size: 100px;
+    font-size: 50px;
 }
 
 li{
@@ -46,18 +47,18 @@ a{
 }
 #table{
     position: absolute;
-    top: 300px;
-    
+    top: 250px;
 }
 table {
     margin: 0 auto;
     table-layout: fixed;
     width: 50%;
     line-height: 2em;
+    border-bottom: solid 2px rgb(75, 125, 141); 
 }
 
 th {
-    background-color: rgb(65, 236, 193);
+    background-color: rgb(75, 125, 141);
     color: white;
 }
 
@@ -82,8 +83,8 @@ tbody tr:hover {
     background: rgba(184, 197, 255, 0.589);
 }
 
-tbody td:last-child {
+/* tbody td:last-child {
     background: gray;
     color: white;
     cursor: pointer;
-}
+} */

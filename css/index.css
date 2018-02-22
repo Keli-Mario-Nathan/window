@@ -1,4 +1,7 @@
 body{
+    
+    display: flex;
+    justify-content: center;
     font-family: 'Ubuntu', sans-serif;
 }
 
@@ -10,7 +13,6 @@ hr {
     height: 1px;
     border: 0;
     border-top: 2px solid rgb(167, 165, 165);
-    /* margin: 1em 0; */
     padding: 0;
 }
 
@@ -20,6 +22,7 @@ select {
 }
 
 #chooser{
+    margin: 0 auto;
     text-align: center;
 }
 
@@ -36,7 +39,7 @@ select {
 #container2{
 display: inline;
 position: absolute;
-left: 550px;
+left: 500px;
 top:200px;
 
 }
@@ -52,8 +55,9 @@ h1{
     color: rgb(102, 100, 100);
     position: absolute;
     margin: 0px;
+    top: 70px;
     left: 20px;
-    font-size: 100px;
+    font-size: 50px;
 }
 li{
     display: inline;

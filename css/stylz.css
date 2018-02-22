@@ -21,8 +21,9 @@ h1{
     color: rgb(102, 100, 100);
     position: absolute;
     margin: 0px;
+    top: 70px;
     left: 20px;
-    font-size: 100px;
+    font-size: 50px;
 }
 
 li{
@@ -45,14 +46,19 @@ a{
     text-decoration: none;
     color: rgb(75, 125, 141);
 }
-#container {
+#container { 
+    
     width: fit-content;
-    position: relative;
+    position:absolute;
+    top: 250px;
+    right: 700px;
 }
 
 #controls {
     width: 200px;
-    margin-left: 20px;
+    position:absolute;
+    top: 250px;
+    right:450px;
 }
 
 #controls>div {
