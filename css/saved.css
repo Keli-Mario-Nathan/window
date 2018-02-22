@@ -1,21 +1,39 @@
 body {
     display: flex;
     justify-content: center;
+    font-family: 'Lato', sans-serif;
 }
 
 table {
+    position: absolute;
+    top: 200px;
+    right: 150px;
     margin: 0 auto;
     /* border-collapse: collapse; */
     /* border: solid silver .5px; */
     /* border-bottom: 2px solid rgb(65, 236, 193); */
     table-layout: fixed;
-    width: 50%;
+    width: 80%;
     line-height: 2em;
+   
 }
 
+hr {
+    display: block;
+    width: 98%;
+    position: relative;
+    top:120px;
+    height: 1px;
+    border: 0;
+    border-top: 2px solid rgb(167, 165, 165);
+    /* margin: 1em 0; */
+    padding: 0;
+}
+
+
 th {
-    background-color: rgb(65, 236, 193);
-    color: white;
+    background-color: whitesmoke;;
+    
     /* border: 1px solid #eee; */
     /* border-collapse: collapse; */
 }
@@ -30,12 +48,17 @@ td {
     /* border: 1px solid #eee; */
 }
 
+td:hover{
+    color: black;
+}
+
 tbody tr:nth-child(odd) {
     background: white;
 }
 
 tbody tr:nth-child(even) {
     background: whitesmoke;
+
 }
 
 tbody tr:hover {
@@ -43,8 +66,14 @@ tbody tr:hover {
 }
 
 tbody td:last-child {
-    background: gray;
+    background: whitesmoke;
     color: white;
+    cursor: pointer;
+}
+
+tbody td:last-child:hover {
+    background: rgb(205, 238, 201);
+    color: black;
     cursor: pointer;
 }
 
@@ -52,3 +81,36 @@ tbody td:last-child {
     margin: 0 auto;
     
   } */
+
+  h1{
+    font-family: 'Ubuntu', sans-serif;
+    display: inline;
+    color: rgb(102, 100, 100);
+    position: absolute;
+    margin: 0px;
+    left: 30px;
+    top: 40px;
+    font-size: 40px;
+}
+li{
+    display: inline;
+    margin: 50px;
+    
+}
+
+nav{
+    display: inline;
+    position: absolute;
+    right: 200px;
+    top: 100px;
+    
+}
+
+ul{
+    display: inline;
+   
+}
+a{
+    text-decoration: none;
+    color: rgb(75, 125, 141);
+}
