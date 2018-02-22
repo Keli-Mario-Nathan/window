@@ -146,8 +146,8 @@ function Component() {
 }
 
 const rainPane = new Rain(125, 400, 183, 4, 62, 3, 10, 4, 7, 2, 20, 4, 6, 185, 190, 90, 100, 65, 80);
-const snowPane = new Snow(60, 300, 183, 4, 86, 2, 6, 3, 5, 2, 20, 9, 12, 190, 0, 90, 210, 20, 100);
-const cloudPane = new Clouds(100, 200, 212, 79, 73, 0.1, 2, 0.2, 0.7, 100, 300, 130, 260, 200, 0, 90, 220, 10, 100);
+const snowPane = new Snow(60, 300, 183, 4, 86, 2, 6, 3, 5, 2, 20, 9, 12, 190, 210, 0, 20, 90, 100);
+const cloudPane = new Clouds(100, 200, 212, 79, 73, 0.1, 2, 0.2, 0.7, 100, 300, 130, 260, 200, 220, 0, 10, 90, 100);
 
 
 const dropdown = document.getElementById('choose');
@@ -369,7 +369,7 @@ $(function() {
                 scene.components[i].colorL = randNum(ui.values[0], ui.values[1]);
             }
             scene.color.lightness.lower = ui.values[0];
-            scene.color.lightness.lower = ui.values[1];
+            scene.color.lightness.upper = ui.values[1];
         }
     });
 });
