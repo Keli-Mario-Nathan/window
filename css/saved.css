@@ -5,38 +5,50 @@ body {
 
 table {
     margin: 0 auto;
-    border-collapse: collapse;
-    border: solid silver .5px;
-    border-bottom: 2px solid rgb(65, 236, 193);
+    /* border-collapse: collapse; */
+    /* border: solid silver .5px; */
+    /* border-bottom: 2px solid rgb(65, 236, 193); */
     table-layout: fixed;
     width: 50%;
+    line-height: 2em;
 }
 
 th {
     background-color: rgb(65, 236, 193);
     color: white;
-    border: 1px solid #eee;
-    border-collapse: collapse;
+    /* border: 1px solid #eee; */
+    /* border-collapse: collapse; */
+}
+
+th:last-child {
+    width: 10em;
 }
   
 td {
     text-align: center;
     color: rgb(153, 150, 150);
-    border: 1px solid #eee;
+    /* border: 1px solid #eee; */
 }
 
 tbody tr:nth-child(odd) {
-  background: white;
+    background: white;
 }
 
 tbody tr:nth-child(even) {
     background: whitesmoke;
 }
-  tbody tr:hover {
-    background: rgba(255, 204, 184, 0.589);
-  }
 
-  #addP{
+tbody tr:hover {
+    background: rgba(184, 197, 255, 0.589);
+}
+
+tbody td:last-child {
+    background: gray;
+    color: white;
+    cursor: pointer;
+}
+
+  /* #addP{
     margin: 0 auto;
     
-  }
+  } */

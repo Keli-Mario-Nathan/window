@@ -244,7 +244,7 @@ dropdown.addEventListener('input', function() {
 const saveButton = document.getElementById('save-button');
 saveButton.addEventListener('click', function() {
     scene.savedAs = prompt('Give your pane a name:');
-    scene.savedAt = moment().format('LLL');
+    scene.savedAt = moment().format('LLL'); //eslint-disable-line
     if (localStorage.getItem('savedPanes')) {
         const saved = JSON.parse(localStorage.getItem('savedPanes'));
         saved.push(scene);
