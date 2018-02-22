@@ -2,6 +2,7 @@ body {
     font-family: 'Ubuntu', sans-serif;
     display: flex;
     justify-content: center;
+    font-family: 'Lato', sans-serif;
 }
 
 hr {
@@ -50,12 +51,28 @@ a{
     top: 250px;
 }
 table {
+    position: absolute;
+    top: 200px;
+    right: 150px;
     margin: 0 auto;
     table-layout: fixed;
-    width: 50%;
+    width: 80%;
     line-height: 2em;
     border-bottom: solid 2px rgb(75, 125, 141); 
 }
+
+hr {
+    display: block;
+    width: 98%;
+    position: relative;
+    top:120px;
+    height: 1px;
+    border: 0;
+    border-top: 2px solid rgb(167, 165, 165);
+    /* margin: 1em 0; */
+    padding: 0;
+}
+
 
 th {
     background-color: rgb(75, 125, 141);
@@ -71,12 +88,17 @@ td {
     color: rgb(153, 150, 150);
 }
 
+td:hover{
+    color: black;
+}
+
 tbody tr:nth-child(odd) {
     background: white;
 }
 
 tbody tr:nth-child(even) {
     background: whitesmoke;
+
 }
 
 tbody tr:hover {

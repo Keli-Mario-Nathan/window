@@ -1,8 +1,13 @@
 body{
+<<<<<<< HEAD
 
     display: flex;
     justify-content: center;
     font-family: 'Ubuntu', sans-serif;
+=======
+   
+    font-family: 'Lato', sans-serif;
+>>>>>>> d80b621372147c32c29a69448d99229a776a28e2
 }
 
 hr {
@@ -16,7 +21,11 @@ hr {
     padding: 0;
 }
 
+
 select {
+
+    position: relative;
+    right: 40px;
     -moz-appearance: none;
     -webkit-appearance:none;
 }
@@ -48,19 +57,32 @@ border-radius: 10px;
 }
 
 #choices{
-    width: 200px;
-    height: 40px;
+    border-radius: 10px;
+    color: lightcoral;
+    font-size:20px;
+    width: 220px;
+    height: 60px;
 }
 
 
+    
+
+
 h1{
+    font-family: 'Ubuntu', sans-serif;
     display: inline;
     color: rgb(102, 100, 100);
     position: absolute;
     margin: 0px;
+<<<<<<< HEAD
     top: 70px;
     left: 20px;
     font-size: 50px;
+=======
+    left: 30px;
+    top: 40px;
+    font-size: 40px;
+>>>>>>> d80b621372147c32c29a69448d99229a776a28e2
 }
 li{
     display: inline;
@@ -111,4 +133,17 @@ width: 400px;
 height: 300px;
 opacity: .65;
 border-radius: 10px;
+}
+
+#popup {
+    position: absolute;
+    top: 350px;
+    height: 60px;
+    width: 40px;
+}
+
+#popup p {
+    position: absolute;
+    height: 20px;
+    margin: 0;
 }
