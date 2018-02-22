@@ -37,9 +37,8 @@ select {
 #container2{
 display: inline;
 position: absolute;
-left: 550px;
+left: 600px;
 top:200px;
-
 }
 
 #choices{
@@ -49,10 +48,6 @@ top:200px;
     width: 220px;
     height: 60px;
 }
-
-
-    
-
 
 h1{
     font-family: 'Ubuntu', sans-serif;
@@ -66,8 +61,7 @@ h1{
 }
 li{
     display: inline;
-    margin: 50px;
-    
+    margin: 50px; 
 }
 
 nav{
@@ -75,12 +69,10 @@ nav{
     position: absolute;
     right: 200px;
     top: 100px;
-    
 }
 
 ul{
     display: inline;
-   
 }
 a{
     text-decoration: none;
