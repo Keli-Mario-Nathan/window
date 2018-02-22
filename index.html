@@ -1,53 +1,58 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
+<head>
+    <meta charset="UTF-8">
+    <title>Pane Relief</title>
     <link href="css/reset.css" type="text/css" rel="stylesheet">
     <link href="css/index.css" type="text/css" rel="stylesheet">
-    <script src="js/p5.min.js"></script>
-    <script src="addons/p5.dom.min.js"></script>
+    <!-- <script src="js/p5.min.js"></script> -->
+    <!-- <script src="addons/p5.dom.min.js"></script> -->
     <!-- <script src="addons/p5.sound.min.js"></script> -->
-    
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-  
-  </head>
-
-
- 
-  <body>
+</head>
+<body>
     <h1>Pane Relief</h1>
 <nav>
 <ul>
-  <a href="index.html" alt="home"><li>Main Pane</li></a>
-  <a href="saved.html" alt="history"><li>My Panes</li></a>  
+    <a href="index.html" alt="home"><li>Main Pane</li></a>
+    <a href="saved.html" alt="history"><li>My Panes</li></a>  
 </ul>
 </nav>
 <hr>
-
-  <div id="popup">
+<div id="popup">
     <p>...</p>
-  </div>
-
+</div>
 <div id="invisible">
     <p>
-  Greetings and welcome to <strong>Pane Relief</strong>..... 
-  <br>
-  <br>
-  Your personalized perspective on a world that you can control! <br>
-  <br>
-  Start by selecting a basic weather profile and continue to adjust the features
-  on the following page to suit, or change your mood. <br>
+        Greetings and welcome to <strong>Pane Relief</strong>..... 
+        <br>
+        <br>
+        Your personalized perspective on a world that you can control!
+        <br>
+        <br>
+        Start by selecting a basic weather profile and continue to adjust the features
+        on the following page to suit, or change your mood.
+        <br>
     </p>
-  </div>
-
-  <div id="container2">
+</div>
+<div id="container2">
+<form id="chooser">
+    <select id="choices">
+        <option value="" selected disabled>Choose One</option>
+        <option value="rain">Rain</option>
+        <option value="snow">Snow</option>
+        <option value="clouds">Puffy Clouds</option>
+    </select>
+</form>
+</div>
+  <!-- <div id="container2">
       <select id="choose2">
           <option value="" >Pick One</option> 
           <option value="rain">Rain</option> 
           <option value="snow">Snow</option>
           <option value="clouds">Puffy Clouds</option>
       </select>
-  </div>
+  </div> -->
 <script src="js/index.js"></script>
 </body>
 </html>

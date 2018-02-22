@@ -11,60 +11,76 @@ function randFloat(min, max) {
     return parseFloat((Math.random() * (max - min) + min).toFixed(1));
 }
 
-function Weather() {
+function Weather(quantityCurrent, quantityMax, backgroundH, backgroundS, backgroundL, speedMin, speedMax, speedLower, speedUpper, sizeMin, sizeMax, sizeLower, sizeUpper, colorHLower, colorHUpper, colorSLower, colorSUpper, colorLLower, colorLUpper) {
     this.components = [];
+    this.quantity = {
+        current: quantityCurrent,
+        max: quantityMax
+    };
+    this.background = {
+        hue: backgroundH,
+        saturation: backgroundS,
+        lightness: backgroundL
+    };
+    this.speed = {
+        min: speedMin,
+        max: speedMax,
+        lower: speedLower,
+        upper: speedUpper
+    };
+    this.size = {
+        min: sizeMin,
+        max: sizeMax,
+        lower: sizeLower,
+        upper: sizeUpper};
+    this.color = {
+        hue: {
+            lower: colorHLower,
+            upper: colorHUpper
+        },
+        saturation: {
+            lower: colorSLower,
+            upper: colorSUpper
+        },
+        lightness: {
+            lower: colorLLower,
+            upper: colorLUpper
+        }
+    };
 }
 
 Weather.prototype.collectComponents = function() {
-    for (let i = 0; i < this.numOfComponents; i++) {
+    for (let i = 0; i < this.quantity.current; i++) {
         this.components.push(new Component());
     }
 };
 
 Weather.prototype.setControls = function() {
-    $('#quantity-slider').slider('option', 'max', this.quantityMax);
-    $('#quantity-slider').slider('option', 'value', this.numOfComponents);
-    $('#bg-hue-slider').slider('option', 'value', this.backgroundH);
-    $('#bg-sat-slider').slider('option', 'value', this.backgroundS);
-    $('#bg-light-slider').slider('option', 'value', this.backgroundL);
-    $('#speed-slider').slider('option', 'min', this.speedMin);
-    $('#speed-slider').slider('option', 'max', this.speedMax);
-    $('#speed-slider').slider('option', 'values', [this.speedLow, this.speedHigh]);
-    $('#size-slider').slider('option', 'min', this.sizeMin);
-    $('#size-slider').slider('option', 'max', this.sizeMax);
-    $('#size-slider').slider('option', 'values', [this.sizeLow, this.sizeHigh]);
-    $('#component-hue-slider').slider('option', 'values', [this.colorHLow, this.colorHHigh]);
-    $('#component-sat-slider').slider('option', 'values', [this.colorSLow, this.colorSHigh]);
-    $('#component-light-slider').slider('option', 'values', [this.colorLLow, this.colorLHigh]);
+    $('#quantity-slider').slider('option', 'max', this.quantity.max);
+    $('#quantity-slider').slider('option', 'value', this.quantity.current);
+    $('#bg-hue-slider').slider('option', 'value', this.background.hue);
+    $('#bg-sat-slider').slider('option', 'value', this.background.saturation);
+    $('#bg-light-slider').slider('option', 'value', this.background.lightness);
+    $('#speed-slider').slider('option', 'min', this.speed.min);
+    $('#speed-slider').slider('option', 'max', this.speed.max);
+    $('#speed-slider').slider('option', 'values', [this.speed.lower, this.speed.upper]);
+    $('#size-slider').slider('option', 'min', this.size.min);
+    $('#size-slider').slider('option', 'max', this.size.max);
+    $('#size-slider').slider('option', 'values', [this.size.lower, this.size.upper]);
+    $('#component-hue-slider').slider('option', 'values', [this.color.hue.lower, this.color.hue.upper]);
+    $('#component-sat-slider').slider('option', 'values', [this.color.saturation.lower, this.color.saturation.upper]);
+    $('#component-light-slider').slider('option', 'values', [this.color.lightness.lower, this.color.lightness.upper]);
 };
 
-function Rain() {
-    Weather.call(this);
-    this.numOfComponents = 125;
-    this.backgroundH = 183;
-    this.backgroundS = 4;
-    this.backgroundL = 62;
-    this.quantityMax = 400;
-    this.speedMin = 3;
-    this.speedMax = 10;
-    this.speedLow = 4;
-    this.speedHigh = 7;
-    this.sizeMin = 2;
-    this.sizeMax = 20;
-    this.sizeLow = 4;
-    this.sizeHigh = 6;
-    this.colorHLow = 185;
-    this.colorSLow = 90;
-    this.colorLLow = 65;
-    this.colorHHigh = 190;
-    this.colorSHigh = 100;
-    this.colorLHigh = 80;
+function Rain(quantityCurrent, quantityMax, backgroundH, backgroundS, backgroundL, speedMin, speedMax, speedLower, speedUpper, sizeMin, sizeMax, sizeLower, sizeUpper, colorHLower, colorHUpper, colorSLower, colorSUpper, colorLLower, colorLUpper) {
+    Weather.call(this, quantityCurrent, quantityMax, backgroundH, backgroundS, backgroundL, speedMin, speedMax, speedLower, speedUpper, sizeMin, sizeMax, sizeLower, sizeUpper, colorHLower, colorHUpper, colorSLower, colorSUpper, colorLLower, colorLUpper);
+    this.weatherType = 'rain';
 }
 
 Rain.prototype = Object.create(Weather.prototype);
 
 Rain.prototype.render = function() {
-    background(this.backgroundH, this.backgroundS, this.backgroundL);
+    background(this.background.hue, this.background.saturation, this.background.lightness);
     for (let i = 0; i < this.components.length; i++) {
         const drop = this.components[i];
         fill(drop.colorH, drop.colorS, drop.colorL);
@@ -77,33 +93,15 @@ Rain.prototype.render = function() {
     }
 };
 
-function Snow() {
-    Weather.call(this);
-    this.numOfComponents = 60;
-    this.backgroundH = 183;
-    this.backgroundS = 4;
-    this.backgroundL = 86;
-    this.quantityMax = 300;
-    this.speedMin = 2;
-    this.speedMax = 6;
-    this.speedLow = 3;
-    this.speedHigh = 5;
-    this.sizeMin = 2;
-    this.sizeMax = 20;
-    this.sizeLow = 9;
-    this.sizeHigh = 12;
-    this.colorHLow = 190;
-    this.colorSLow = 0;
-    this.colorLLow = 90;
-    this.colorHHigh = 210;
-    this.colorSHigh = 20;
-    this.colorLHigh = 100;
+function Snow(quantityCurrent, quantityMax, backgroundH, backgroundS, backgroundL, speedMin, speedMax, speedLower, speedUpper, sizeMin, sizeMax, sizeLower, sizeUpper, colorHLower, colorHUpper, colorSLower, colorSUpper, colorLLower, colorLUpper) {
+    Weather.call(this, quantityCurrent, quantityMax, backgroundH, backgroundS, backgroundL, speedMin, speedMax, speedLower, speedUpper, sizeMin, sizeMax, sizeLower, sizeUpper, colorHLower, colorHUpper, colorSLower, colorSUpper, colorLLower, colorLUpper);
+    this.weatherType = 'snow';
 }
 
 Snow.prototype = Object.create(Weather.prototype);
 
 Snow.prototype.render = function() {
-    background(this.backgroundH, this.backgroundS, this.backgroundL);
+    background(this.background.hue, this.background.saturation, this.background.lightness);
     for (let i = 0; i < this.components.length; i++) {
         const flake = this.components[i];
         fill(flake.colorH, flake.colorS, flake.colorL);
@@ -116,33 +114,15 @@ Snow.prototype.render = function() {
     }
 };
 
-function Clouds() {
-    Weather.call(this);
-    this.numOfComponents = 100;
-    this.backgroundH = 212;
-    this.backgroundS = 79;
-    this.backgroundL = 73;
-    this.quantityMax = 200;
-    this.speedMin = 0.1;
-    this.speedMax = 2;
-    this.speedLow = 0.2;
-    this.speedHigh = 0.7;
-    this.sizeMin = 100;
-    this.sizeMax = 300;
-    this.sizeLow = 130;
-    this.sizeHigh = 260;
-    this.colorHLow = 200;
-    this.colorSLow = 0;
-    this.colorLLow = 90;
-    this.colorHHigh = 220;
-    this.colorSHigh = 10;
-    this.colorLHigh = 100;
+function Clouds(quantityCurrent, quantityMax, backgroundH, backgroundS, backgroundL, speedMin, speedMax, speedLower, speedUpper, sizeMin, sizeMax, sizeLower, sizeUpper, colorHLower, colorHUpper, colorSLower, colorSUpper, colorLLower, colorLUpper) {
+    Weather.call(this, quantityCurrent, quantityMax, backgroundH, backgroundS, backgroundL, speedMin, speedMax, speedLower, speedUpper, sizeMin, sizeMax, sizeLower, sizeUpper, colorHLower, colorHUpper, colorSLower, colorSUpper, colorLLower, colorLUpper);
+    this.weatherType = 'clouds';
 }
 
 Clouds.prototype = Object.create(Weather.prototype);
 
 Clouds.prototype.render = function() {
-    background(this.backgroundH, this.backgroundS, this.backgroundL);
+    background(this.background.hue, this.background.saturation, this.background.lightness);
     for (let i = 0; i < this.components.length; i++) {
         const cloud = this.components[i];
         fill(cloud.colorH, cloud.colorS, cloud.colorL);
@@ -156,31 +136,60 @@ Clouds.prototype.render = function() {
 };
 
 function Component() {
-    this.size = randNum(scene.sizeLow, scene.sizeHigh);
-    this.speed = randFloat(scene.speedLow, scene.speedHigh);
-    this.colorH = randNum(scene.colorHLow, scene.colorHHigh);
-    this.colorS = randNum(scene.colorSLow, scene.colorSHigh);
-    this.colorL = randNum(scene.colorLLow, scene.colorLHigh);
+    this.size = randNum(scene.size.lower, scene.size.upper);
+    this.speed = randFloat(scene.speed.lower, scene.speed.upper);
+    this.colorH = randNum(scene.color.hue.lower, scene.color.hue.upper);
+    this.colorS = randNum(scene.color.saturation.lower, scene.color.saturation.upper);
+    this.colorL = randNum(scene.color.lightness.lower, scene.color.lightness.upper);
     this.xPosition = randNum(0 - this.size / 2, canvasWidth + this.size / 2);
     this.yPosition = randNum(0 - this.size / 2, canvasHeight + this.size / 2);
 }
 
-const rainPane = new Rain();
-const snowPane = new Snow();
-const cloudPane = new Clouds();
+const rainPane = new Rain(125, 400, 183, 4, 62, 3, 10, 4, 7, 2, 20, 4, 6, 185, 190, 90, 100, 65, 80);
+const snowPane = new Snow(60, 300, 183, 4, 86, 2, 6, 3, 5, 2, 20, 9, 12, 190, 210, 0, 20, 90, 100);
+const cloudPane = new Clouds(100, 200, 212, 79, 73, 0.1, 2, 0.2, 0.7, 100, 300, 130, 260, 200, 220, 0, 10, 90, 100);
 
-let scene;
-switch (localStorage.getItem('choice')) {
-case 'rain':
-default:
-    scene = rainPane;
-    break;
-case 'snow':
-    scene = snowPane;
-    break;
-case 'clouds':
-    scene = cloudPane;
-    break;
+
+const dropdown = document.getElementById('choose');
+
+let scene = rainPane;
+dropdown.value = 'rain';
+if (localStorage.getItem('choice')) {
+    switch (localStorage.getItem('choice')) {
+    case 'rain':
+        scene = rainPane;
+        dropdown.value = 'rain';
+        break;
+    case 'snow':
+        scene = snowPane;
+        dropdown.value = 'snow';
+        break;
+    case 'clouds':
+        scene = cloudPane;
+        dropdown.value = 'clouds';
+        break;
+    }
+    localStorage.removeItem('choice');
+} else if (localStorage.getItem('requestedPane')) {
+    const rawScene = JSON.parse(localStorage.getItem('requestedPane'));
+    localStorage.removeItem('requestedPane');
+    switch (rawScene.weatherType) {
+    case 'rain':
+        scene = new Rain(rawScene.quantity.current, rawScene.quantity.max, rawScene.background.hue, rawScene.background.saturation, rawScene.background.lightness, rawScene.speed.min, rawScene.speed.max, rawScene.speed.lower, rawScene.speed.upper, rawScene.size.min, rawScene.size.max, rawScene.size.lower, rawScene.size.upper, rawScene.color.hue.lower, rawScene.color.hue.upper, rawScene.color.saturation.lower, rawScene.color.saturation.upper, rawScene.color.lightness.lower, rawScene.color.lightness.upper);
+        scene.savedAs = rawScene.savedAs;
+        dropdown.value = 'rain';
+        break;
+    case 'snow':
+        scene = new Snow(rawScene.quantity.current, rawScene.quantity.max, rawScene.background.hue, rawScene.background.saturation, rawScene.background.lightness, rawScene.speed.min, rawScene.speed.max, rawScene.speed.lower, rawScene.speed.upper, rawScene.size.min, rawScene.size.max, rawScene.size.lower, rawScene.size.upper, rawScene.color.hue.lower, rawScene.color.hue.upper, rawScene.color.saturation.lower, rawScene.color.saturation.upper, rawScene.color.lightness.lower, rawScene.color.lightness.upper);
+        scene.savedAs = rawScene.savedAs;
+        dropdown.value = 'snow';
+        break;
+    case 'clouds':
+        scene = new Clouds(rawScene.quantity.current, rawScene.quantity.max, rawScene.background.hue, rawScene.background.saturation, rawScene.background.lightness, rawScene.speed.min, rawScene.speed.max, rawScene.speed.lower, rawScene.speed.upper, rawScene.size.min, rawScene.size.max, rawScene.size.lower, rawScene.size.upper, rawScene.color.hue.lower, rawScene.color.hue.upper, rawScene.color.saturation.lower, rawScene.color.saturation.upper, rawScene.color.lightness.lower, rawScene.color.lightness.upper);
+        scene.savedAs = rawScene.savedAs;
+        dropdown.value = 'clouds';
+        break;
+    }
 }
 
 $('#quantity-slider').slider();
@@ -206,42 +215,53 @@ function draw() { //eslint-disable-line
     scene.render();
 }
 
-const dropdown = document.getElementById('choose');
 dropdown.addEventListener('input', function() {
-    if (this.value === 'rain') {
+    switch (this.value) {
+    case 'rain':
         scene = rainPane;
-        scene.setControls();
-        if (scene.components.length === 0) {
-            scene.collectComponents();
-        }
-    } else if (this.value === 'snow') {
+        break;
+    case 'snow':
         scene = snowPane;
-        scene.setControls();
-        if (scene.components.length === 0) {
-            scene.collectComponents();
-        }
-    } else if (this.value === 'clouds') {
+        break;
+    case 'clouds':
         scene = cloudPane;
-        scene.setControls();
-        if (scene.components.length === 0) {
-            scene.collectComponents();
-        }
+        break;
+    }
+    scene.setControls();
+    if (scene.components.length === 0) {
+        scene.collectComponents();
+    }
+});
+
+const saveButton = document.getElementById('save-button');
+saveButton.addEventListener('click', function() {
+    scene.savedAs = prompt('Give your pane a name:');
+    if (!scene.savedAs) {
+        scene.savedAs = 'myPane';
+    }
+    scene.savedAt = moment().format('LLL'); //eslint-disable-line
+    if (localStorage.getItem('savedPanes')) {
+        const saved = JSON.parse(localStorage.getItem('savedPanes'));
+        saved.push(scene);
+        localStorage.setItem('savedPanes', JSON.stringify(saved));
+    } else {
+        localStorage.setItem('savedPanes', JSON.stringify([scene]));
     }
 });
 
 $(function() {
     $('#quantity-slider').slider({
         min: 1,
-        max: scene.quantityMax,
+        max: scene.quantity.max,
         change: function(event, ui) {
-            if (scene.numOfComponents > ui.value) {
+            if (scene.quantity.current > ui.value) {
                 scene.components.splice(ui.value);
-            } else if (scene.numOfComponents < ui.value) {
-                for (let i = 0; i < (ui.value - scene.numOfComponents); i++) {
+            } else if (scene.quantity.current < ui.value) {
+                for (let i = 0; i < (ui.value - scene.quantity.current); i++) {
                     scene.components.push(new Component());
                 }
             }
-            scene.numOfComponents = ui.value;
+            scene.quantity.current = ui.value;
         }
     });
 });
@@ -251,7 +271,7 @@ $(function() {
         min: 0,
         max: 360,
         change: function(event, ui) {
-            scene.backgroundH = ui.value;
+            scene.background.hue = ui.value;
         }
     });
 });
@@ -261,7 +281,7 @@ $(function() {
         min: 0,
         max: 100,
         change: function(event, ui) {
-            scene.backgroundS = ui.value;
+            scene.background.saturation = ui.value;
         }
     });
 });
@@ -271,7 +291,7 @@ $(function() {
         min: 0,
         max: 100,
         change: function(event, ui) {
-            scene.backgroundL = ui.value;
+            scene.background.lightness = ui.value;
         }
     });
 });
@@ -279,16 +299,16 @@ $(function() {
 $(function() {
     $('#speed-slider').slider({
         range: true,
-        min: scene.speedMin,
-        max: scene.speedMax,
-        values: [scene.speedLow, scene.speedHigh],
+        min: scene.speed.min,
+        max: scene.speed.max,
+        values: [scene.speed.lower, scene.speed.upper],
         step: 0.1,
         change: function(event, ui) {
             for (let i = 0; i < scene.components.length; i++) {
                 scene.components[i].speed = randFloat(ui.values[0], ui.values[1]);
             }
-            scene.speedLow = ui.values[0];
-            scene.speedHigh = ui.values[1];
+            scene.speed.lower = ui.values[0];
+            scene.speed.upper = ui.values[1];
         }
     });
 });
@@ -296,16 +316,16 @@ $(function() {
 $(function() {
     $('#size-slider').slider({
         range: true,
-        min: scene.sizeMin,
-        max: scene.sizeMax,
-        values: [scene.sizeLow, scene.sizeHigh],
+        min: scene.size.min,
+        max: scene.size.max,
+        values: [scene.size.lower, scene.size.upper],
         step: 0.1,
         change: function(event, ui) {
             for (let i = 0; i < scene.components.length; i++) {
                 scene.components[i].size = randNum(ui.values[0], ui.values[1]);
             }
-            scene.sizeLow = ui.values[0];
-            scene.sizeHigh = ui.values[1];
+            scene.size.lower = ui.values[0];
+            scene.size.upper = ui.values[1];
         }
     });
 });
@@ -319,8 +339,8 @@ $(function() {
             for (let i = 0; i < scene.components.length; i++) {
                 scene.components[i].colorH = randNum(ui.values[0], ui.values[1]);
             }
-            scene.colorHLow = ui.values[0];
-            scene.colorHHigh = ui.values[1];
+            scene.color.hue.lower = ui.values[0];
+            scene.color.hue.upper = ui.values[1];
         }
     });
 });
@@ -334,8 +354,8 @@ $(function() {
             for (let i = 0; i < scene.components.length; i++) {
                 scene.components[i].colorS = randNum(ui.values[0], ui.values[1]);
             }
-            scene.colorSLow = ui.values[0];
-            scene.colorSHigh = ui.values[1];
+            scene.color.saturation.lower = ui.values[0];
+            scene.color.saturation.upper = ui.values[1];
         }
     });
 });
@@ -349,8 +369,8 @@ $(function() {
             for (let i = 0; i < scene.components.length; i++) {
                 scene.components[i].colorL = randNum(ui.values[0], ui.values[1]);
             }
-            scene.colorLLow = ui.values[0];
-            scene.colorLHigh = ui.values[1];
+            scene.color.lightness.lower = ui.values[0];
+            scene.color.lightness.upper = ui.values[1];
         }
     });
 });
