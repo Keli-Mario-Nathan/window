@@ -1,9 +1,8 @@
 'use strict';
 
-const chooser = document.getElementById('choose2');
-chooser.addEventListener('input', function() {
-    const choice = this.value;
-    localStorage.setItem('choice', choice);
+const choices = document.getElementById('choices');
+choices.addEventListener('input', function() {
+    localStorage.setItem('choice', event.target.value);
+    choices.parentElement.reset();
     window.location.href = 'pane.html';
 });
-

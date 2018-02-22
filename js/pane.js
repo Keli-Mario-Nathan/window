@@ -170,16 +170,20 @@ const snowPane = new Snow();
 const cloudPane = new Clouds();
 
 let scene;
+const dropdown = document.getElementById('choose');
 switch (localStorage.getItem('choice')) {
 case 'rain':
 default:
     scene = rainPane;
+    dropdown.value = 'rain';
     break;
 case 'snow':
     scene = snowPane;
+    dropdown.value = 'snow';
     break;
 case 'clouds':
     scene = cloudPane;
+    dropdown.value = 'clouds';
     break;
 }
 
@@ -206,26 +210,21 @@ function draw() { //eslint-disable-line
     scene.render();
 }
 
-const dropdown = document.getElementById('choose');
 dropdown.addEventListener('input', function() {
-    if (this.value === 'rain') {
+    switch (this.value) {
+    case 'rain':
         scene = rainPane;
-        scene.setControls();
-        if (scene.components.length === 0) {
-            scene.collectComponents();
-        }
-    } else if (this.value === 'snow') {
+        break;
+    case 'snow':
         scene = snowPane;
-        scene.setControls();
-        if (scene.components.length === 0) {
-            scene.collectComponents();
-        }
-    } else if (this.value === 'clouds') {
+        break;
+    case 'clouds':
         scene = cloudPane;
-        scene.setControls();
-        if (scene.components.length === 0) {
-            scene.collectComponents();
-        }
+        break;
+    }
+    scene.setControls();
+    if (scene.components.length === 0) {
+        scene.collectComponents();
     }
 });
 
