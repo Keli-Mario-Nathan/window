@@ -114,3 +114,16 @@ height: 300px;
 opacity: .33;
 border-radius: 10px;
 }
+
+#popup {
+    position: absolute;
+    top: 350px;
+    height: 60px;
+    width: 40px;
+}
+
+#popup p {
+    position: absolute;
+    height: 20px;
+    margin: 0;
+}
