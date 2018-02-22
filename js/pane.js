@@ -153,6 +153,7 @@ const cloudPane = new Clouds(100, 200, 212, 79, 73, 0.1, 2, 0.2, 0.7, 100, 300, 
 const dropdown = document.getElementById('choose');
 
 let scene = rainPane;
+dropdown.value = 'rain';
 if (localStorage.getItem('choice')) {
     switch (localStorage.getItem('choice')) {
     case 'rain':
