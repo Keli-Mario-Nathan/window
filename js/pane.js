@@ -56,7 +56,6 @@ Weather.prototype.collectComponents = function() {
     if (this instanceof Snow) {
         for (let i = 0; i < this.quantity.current; i++) {
             this.components[i].hexStart = Math.random() * Math.PI / 3;
-            console.log(this.components[i].hexStart);
         }
     }
 };
@@ -231,25 +230,30 @@ function draw() { //eslint-disable-line
     // noLoop();
 }
 
-dropdown.addEventListener('input', function() {
-    switch (this.value) {
-    case 'rain':
-        scene = rainPane;
-        fillSliderLabels();
-        break;
-    case 'snow':
-        scene = snowPane;
-        fillSliderLabels();
-        break;
-    case 'clouds':
-        scene = cloudPane;
-        fillSliderLabels();
-        break;
-    }
-    scene.setControls();
-    if (scene.components.length === 0) {
-        scene.collectComponents();
-    }
+$( function() {
+    $('#choose').selectmenu({
+        select: function(event, ui) {
+            console.log(ui.item.value);
+            switch (ui.item.value) {
+            case 'rain':
+                scene = rainPane;
+                fillSliderLabels();
+                break;
+            case 'snow':
+                scene = snowPane;
+                fillSliderLabels();
+                break;
+            case 'clouds':
+                scene = cloudPane;
+                fillSliderLabels();
+                break;
+            }
+            scene.setControls();
+            if (scene.components.length === 0) {
+                scene.collectComponents();
+            }
+        }
+    });
 });
 
 const saveButton = document.getElementById('save-button');
