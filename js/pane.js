@@ -169,7 +169,22 @@ const rainPane = new Rain();
 const snowPane = new Snow();
 const cloudPane = new Clouds();
 
-let scene = rainPane;
+let scene;
+switch (localStorage.getItem('choice')) {
+case 'rain':
+    scene = rainPane;
+    break;
+case 'snow':
+    scene = snowPane;
+    break;
+case 'clouds':
+    scene = cloudPane;
+    break;
+default:
+    scene = rainPane;
+    break;
+}
+
 $('#quantity-slider').slider();
 $('#bg-hue-slider').slider();
 $('#bg-sat-slider').slider();
