@@ -172,6 +172,7 @@ const cloudPane = new Clouds();
 let scene;
 switch (localStorage.getItem('choice')) {
 case 'rain':
+default:
     scene = rainPane;
     break;
 case 'snow':
@@ -179,9 +180,6 @@ case 'snow':
     break;
 case 'clouds':
     scene = cloudPane;
-    break;
-default:
-    scene = rainPane;
     break;
 }
 
