@@ -1,13 +1,56 @@
 body {
+    font-family: 'Ubuntu', sans-serif;
     display: flex;
     justify-content: center;
 }
 
+hr {
+    display: block;
+    width: 98%;
+    position: relative;
+    top:120px;
+    height: 1px;
+    border: 0;
+    border-top: 2px solid rgb(167, 165, 165);
+    padding: 0;
+}
+
+h1{
+    display: inline;
+    color: rgb(102, 100, 100);
+    position: absolute;
+    margin: 0px;
+    left: 20px;
+    font-size: 100px;
+}
+
+li{
+    display: inline;
+    margin: 50px;
+}
+
+nav{
+    display: inline;
+    position: absolute;
+    right: 200px;
+    top: 100px;
+}
+
+ul{
+    display: inline; 
+}
+
+a{
+    text-decoration: none;
+    color: rgb(75, 125, 141);
+}
+#table{
+    position: absolute;
+    top: 300px;
+    
+}
 table {
     margin: 0 auto;
-    /* border-collapse: collapse; */
-    /* border: solid silver .5px; */
-    /* border-bottom: 2px solid rgb(65, 236, 193); */
     table-layout: fixed;
     width: 50%;
     line-height: 2em;
@@ -16,8 +59,6 @@ table {
 th {
     background-color: rgb(65, 236, 193);
     color: white;
-    /* border: 1px solid #eee; */
-    /* border-collapse: collapse; */
 }
 
 th:last-child {
@@ -27,7 +68,6 @@ th:last-child {
 td {
     text-align: center;
     color: rgb(153, 150, 150);
-    /* border: 1px solid #eee; */
 }
 
 tbody tr:nth-child(odd) {
@@ -47,8 +87,3 @@ tbody td:last-child {
     color: white;
     cursor: pointer;
 }
-
-  /* #addP{
-    margin: 0 auto;
-    
-  } */
