@@ -25,6 +25,7 @@ userSettings.addEventListener('submit', function() {
     const colorL = this[].value
     
 const settings = {numOfComponents: numOfComponents,}
+loca
 
 
 });
