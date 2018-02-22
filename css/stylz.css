@@ -25,3 +25,34 @@ body {
 #controls>div {
     margin-top: 10px;
 }
+
+option {
+    padding: 0.5em;
+}
+
+button {
+    margin-top: 1em;
+}
+
+.ui-corner-all {
+    border-radius: 0;
+}
+
+.ui-slider-horizontal {
+    height: 0.5em;
+}
+
+.ui-slider .ui-slider-handle {
+    width: 1em;
+    height: 1em;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default {
+    /* border: 1px solid #c5c5c5; */
+    background: rgb(240, 240, 240);
+}
+
+.ui-widget-header {
+    /* border: 1px solid #ddd; */
+    background: rgb(220, 220, 220);
+}
