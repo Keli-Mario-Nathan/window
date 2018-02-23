@@ -1,28 +1,50 @@
 body {
-    display: flex;
-    justify-content: center;
+
     font-family: 'Lato', sans-serif;
 }
 
-table {
-    position: absolute;
-    top: 200px;
-    right: 150px;
+header {
+    width: 98%;
+    margin: 0 auto 32px auto;
+    padding-top: 45px;
+    border-bottom: 2px solid rgb(167, 165, 165);
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 1040px;
     margin: 0 auto;
     table-layout: fixed;
     width: 1040px;
     line-height: 2em;
 }
 
-hr {
-    display: block;
-    width: 98%;
-    position: relative;
-    top:120px;
-    height: 1px;
-    border: 0;
-    border-top: 2px solid rgb(167, 165, 165);
-    padding: 0;
+a {
+    text-decoration: none;
+    color: rgb(75, 125, 141);
+    font-weight: bold;
+}
+
+h1 {
+    font-family: 'Ubuntu', sans-serif;
+    color: rgb(102, 100, 100);
+    margin: 0px;
+    font-size: 40px;
+}
+
+header li {
+    font-size: 1.2em;
+    display: inline;
+    margin-left: 48px;
+}
+
+table {
+    margin: 100px auto;
+    table-layout: fixed;
+    width: 1000px;
+    line-height: 2em;
 }
 
 th {
@@ -69,33 +91,6 @@ tbody tr:nth-child(even) {
 tbody tr:hover {
     background: rgba(184, 197, 255, 0.589);
 } 
-
-h1{
-    font-family: 'Ubuntu', sans-serif;
-    display: inline;
-    color: rgb(102, 100, 100);
-    position: absolute;
-    margin: 0px;
-    left: 30px;
-    top: 40px;
-    font-size: 40px;
-}
-
-li{
-    display: inline;
-    margin: 50px;    
-}
-
-nav{
-    display: inline;
-    position: absolute;
-    right: 200px;
-    top: 100px;
-}
-
-ul{
-    display: inline;
-}
 
 #footer {
     position:absolute;
