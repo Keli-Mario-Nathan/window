@@ -1,8 +1,8 @@
 body {
-    display: flex;
-    justify-content: center;
+
     font-family: 'Lato', sans-serif;
 }
+
 header {
     width: 98%;
     margin: 0 auto 32px auto;
@@ -38,12 +38,9 @@ header li {
 }
 
 table {
-    position: absolute;
-    top: 200px;
-    right: 150px;
-    margin: 0 auto;
+    margin: 100px auto;
     table-layout: fixed;
-    width: 80%;
+    width: 1000px;
     line-height: 2em;
 }
 
