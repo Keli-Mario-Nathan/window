@@ -7,7 +7,6 @@ cleanSavedArray();
 buildTable();
 
 function buildTable() {
-    console.log(saved);
     if (localStorage.getItem('savedPanes')) {
         for (let i = 0; i < saved.length; i++) {
             const row = tbody.insertRow();
