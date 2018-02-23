@@ -25,7 +25,7 @@ a {
 
 h1 {
     font-family: 'Ubuntu', sans-serif;
-    color: rgb(102, 100, 100);
+    color: rgb(100, 100, 100);
     margin: 0px;
     font-size: 40px;
 }
@@ -53,7 +53,7 @@ header li {
     margin-top: 12px;
 }
 
-#controls>div:last-child {
+form {
     margin-top: 24px;
     margin-bottom: 24px;
 }
@@ -74,15 +74,26 @@ button {
 
 .ui-slider-horizontal {
     height: 8px;
+    
 }
 
 .ui-slider .ui-slider-handle {
     width: 16px;
     height: 16px;
+    border: 1px solid rgb(150, 150, 150);
+    
 }
 
-.ui-widget-header .ui-state-default, .ui-widget-content .ui-state-default .ui-button {
+.ui-state-default, .ui-widget-content .ui-state-default .ui-button {
     background: rgb(240, 240, 240);
+}
+
+.ui-widget-header {
+    background: rgb(210, 210, 210);
+}
+
+.ui-widget.ui-widget-content {
+    border: 1px solid rgb(150, 150, 150);    
 }
 
 .ui-selectmenu-button.ui-button {
@@ -93,6 +104,7 @@ button {
 .ui-widget, .ui-button {
     font-family: 'Lato', sans-serif;
     font-size: 1em;
+    border: 1px solid rgb(150, 150, 150);
 }
 
 p {
@@ -105,6 +117,7 @@ input {
     box-sizing: border-box;
     padding: 0.4em;
     margin-top: 8px;
+    border: 1px solid rgb(150, 150, 150);    
 }
 
 .animated-link {
