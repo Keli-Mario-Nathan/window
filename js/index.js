@@ -1,8 +1,10 @@
 'use strict';
 
-const choices = document.getElementById('choices');
-choices.addEventListener('input', function() {
-    localStorage.setItem('choice', event.target.value);
-    choices.parentElement.reset();
-    window.location.href = 'pane.html';
+
+    $('#choices').selectmenu({
+        select: function(event, ui) {
+            localStorage.setItem('choice', ui.item.value);
+                window.location.href = 'pane.html';
+            }     
 });
+

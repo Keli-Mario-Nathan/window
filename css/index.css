@@ -26,8 +26,8 @@ select {
 
 #popup{
     position: absolute;
-    right: 50%;
-    top: 200px;
+    right: 29%;
+    top: 250px;
     font-size:40px;
     color: lightgrey;
     width: 20px;
@@ -35,24 +35,40 @@ select {
 }
 
 #container2{
-display: inline;
+display: block;
 position: absolute;
 left: 550px;
-top:200px;
-
+top:340px;
+background-color: white;
 }
-
+/* 
 #choices{
     border-radius: 10px;
     color: lightcoral;
     font-size:20px;
-    width: 220px;
-    height: 60px;
+    width: 400px;
+    height: 100px;
+} */
+
+
+.ui-widget{
+    font-family: 'Lato', sans-serif;
 }
 
-
+.ui-selectmenu-text{
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    font-size: 30px;
+    margin-top: 5px;
+}
     
-
+#choices-button{
+    margin: 0px auto;
+    width: 400px;
+    height:50px;
+    border-radius:10px;
+    text-align:center;
+} 
 
 h1{
     font-family: 'Ubuntu', sans-serif;
@@ -92,13 +108,15 @@ a{
     line-height: 30px;
     position: absolute;
     color: rgb(19, 18, 18);
-    right: 10%;
-    top: 200px;
+    right: 25%;
+    top: 100px;
+
 }
 
 strong{
     font-weight:10px;
 }
+
 
 p{
 padding: 20px;
@@ -109,9 +127,9 @@ padding: 20px;
 display: block;
 background-color:lightblue;
 color: black;
-width: 400px;
-height: 300px;
-opacity: .33;
+width: 600px;
+height: 220px;
+opacity: .65;
 border-radius: 10px;
 }
 
@@ -127,3 +145,13 @@ border-radius: 10px;
     height: 20px;
     margin: 0;
 }
+
+#footer {
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:20px;   /* Height of the footer */
+    font-size: 14px;
+    margin: 2%;
+  
+ }
