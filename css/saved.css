@@ -9,9 +9,6 @@ table {
     top: 200px;
     right: 150px;
     margin: 0 auto;
-    /* border-collapse: collapse; */
-    /* border: solid silver .5px; */
-    /* border-bottom: 2px solid rgb(65, 236, 193); */
     table-layout: fixed;
     width: 80%;
     line-height: 2em;
@@ -26,16 +23,12 @@ hr {
     height: 1px;
     border: 0;
     border-top: 2px solid rgb(167, 165, 165);
-    /* margin: 1em 0; */
     padding: 0;
 }
 
 
 th {
     background-color: whitesmoke;;
-    
-    /* border: 1px solid #eee; */
-    /* border-collapse: collapse; */
 }
 
 th:last-child {
@@ -45,7 +38,6 @@ th:last-child {
 td {
     text-align: center;
     color: rgb(153, 150, 150);
-    /* border: 1px solid #eee; */
 }
 
 td:hover{
@@ -77,12 +69,7 @@ tbody td:last-child:hover {
     cursor: pointer;
 }
 
-  /* #addP{
-    margin: 0 auto;
-    
-  } */
-
-  h1{
+h1{
     font-family: 'Ubuntu', sans-serif;
     display: inline;
     color: rgb(102, 100, 100);
@@ -119,7 +106,7 @@ a{
     position:absolute;
     bottom:0;
     width:100%;
-    height:20px;   /* Height of the footer */
+    height:20px;  
     font-size: 14px;
     margin: 30px;
   
