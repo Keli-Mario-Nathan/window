@@ -1,7 +1,6 @@
 'use strict';
 
 const tbody = document.getElementById('panes');
-// 
 
 if (localStorage.getItem('savedPanes')) {
     const saved = JSON.parse(localStorage.getItem('savedPanes'));
@@ -16,10 +15,14 @@ if (localStorage.getItem('savedPanes')) {
         cell3.textContent = 'Go!';
         cell4.textContent = 'X';
         cell4.addEventListener('click', function () {
-            confirm('Do you want to delete your pane?');
             event.preventDefault;
-            document.getElementById('panes').deleteRow(0);
-            localStorage.removeItem('savedPanes');
+            confirm('Do you want to delete your pane?');
+            if (true){
+                document.getElementById('panes').deleteRow(0);
+                localStorage.removeItem('savedPanes');
+            } else if (false){
+                return;
+            }
         });
         cell3.addEventListener('click', function() {
             event.preventDefault;
