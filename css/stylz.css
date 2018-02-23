@@ -77,6 +77,7 @@ a{
 #test{
     position: absolute;
     top: 180px; 
+    margin-bottom: 50px;
 }
 
 h1{
@@ -102,3 +103,4 @@ li{
 .ui-widget {
     font-family: 'Lato', sans-serif;
 }
+
