@@ -46,10 +46,7 @@ a{
     text-decoration: none;
     color: rgb(75, 125, 141);
 }
-#table{
-    position: absolute;
-    top: 250px;
-}
+
 table {
     position: absolute;
     top: 200px;

@@ -1,13 +1,8 @@
 body{
-<<<<<<< HEAD
 
     display: flex;
     justify-content: center;
     font-family: 'Ubuntu', sans-serif;
-=======
-   
-    font-family: 'Lato', sans-serif;
->>>>>>> d80b621372147c32c29a69448d99229a776a28e2
 }
 
 hr {
@@ -74,15 +69,9 @@ h1{
     color: rgb(102, 100, 100);
     position: absolute;
     margin: 0px;
-<<<<<<< HEAD
     top: 70px;
     left: 20px;
     font-size: 50px;
-=======
-    left: 30px;
-    top: 40px;
-    font-size: 40px;
->>>>>>> d80b621372147c32c29a69448d99229a776a28e2
 }
 li{
     display: inline;
