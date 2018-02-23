@@ -1,7 +1,7 @@
 'use strict';
 
 const canvasWidth = 800;
-const canvasHeight = 598;
+const canvasHeight = 596;
 
 function randNum(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -452,10 +452,11 @@ $( function() {
     });
 });
 
-const saveButton = document.getElementById('save-button');
+const form = document.getElementsByTagName('form')[0];
 const nameInput = document.getElementById('pane-name');
 const myPanesLink = document.getElementById('my-panes-link');
-saveButton.addEventListener('click', function() {
+form.addEventListener('submit', function() {
+    event.preventDefault();
     myPanesLink.classList.add('animated-link');
     myPanesLink.addEventListener('animationend', function() {
         myPanesLink.classList.remove('animated-link');
@@ -472,6 +473,7 @@ saveButton.addEventListener('click', function() {
     } else {
         localStorage.setItem('savedPanes', JSON.stringify([scene]));
     }
+    this.reset();
 });
 
 function createSliderLabels() {

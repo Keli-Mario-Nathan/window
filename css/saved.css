@@ -13,7 +13,7 @@ table {
     /* border: solid silver .5px; */
     /* border-bottom: 2px solid rgb(65, 236, 193); */
     table-layout: fixed;
-    width: 80%;
+    width: 1040px;
     line-height: 2em;
    
 }
@@ -41,7 +41,17 @@ th {
 th:last-child {
     width: 10em;
 }
-  
+
+th:first-child {
+    /* background-color: white; */
+    width: 80px;
+}
+
+/* td:first-child {
+    background-color: white;
+    width: 80px;
+}
+   */
 td {
     text-align: center;
     color: rgb(153, 150, 150);
@@ -50,6 +60,12 @@ td {
 
 td:hover{
     color: black;
+}
+
+td img {
+    position: relative;
+    /* left: -290px; */
+    top: 4px;
 }
 
 tbody tr:nth-child(odd) {
