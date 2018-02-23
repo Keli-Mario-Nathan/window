@@ -1,21 +1,48 @@
 'use strict';
 
 const tbody = document.getElementById('panes');
+const saved = JSON.parse(localStorage.getItem('savedPanes'));
 
 if (localStorage.getItem('savedPanes')) {
-    const saved = JSON.parse(localStorage.getItem('savedPanes'));
     for (let i = 0; i < saved.length; i++) {
         const row = tbody.insertRow();
         const cell1 = row.insertCell();
         const cell2 = row.insertCell();
         const cell3 = row.insertCell();
-        cell1.textContent = saved[i].savedAs;
-        cell2.textContent = saved[i].savedAt;
-        cell3.textContent = 'Go!';
-        cell3.addEventListener('click', function() {
-            event.preventDefault;
+        const cell4 = row.insertCell();
+        const xOut = document.createElement('img');
+        xOut.src = 'images/x-out.png';
+        xOut.alt = 'remove pane';
+        cell1.appendChild(xOut);
+        xOut.addEventListener('click', function(){
+            if (confirm('Remove pane forever?')) {
+                row.remove();
+                saved[i] = 'removed';
+            }
+        });
+        cell2.textContent = saved[i].savedAs;
+        cell3.textContent = saved[i].savedAt;
+        cell4.textContent = 'Go!';
+        cell4.addEventListener('click', function() {
             localStorage.setItem('requestedPane', JSON.stringify(saved[i]));
             window.location.href = 'pane.html';
         });
+    }
+}
+
+window.addEventListener('beforeunload', function() {
+    cleanSavedArray();
+    if (saved.length === 0) {
+        localStorage.removeItem('savedPanes');
+    } else {
+        localStorage.setItem('savedPanes', JSON.stringify(saved));
+    }
+});
+
+function cleanSavedArray() {
+    for (let i = 0; i < saved.length; i++) {
+        if (saved[i] === 'removed') {
+            saved.splice(i, 1);
+        }
     }
 }
