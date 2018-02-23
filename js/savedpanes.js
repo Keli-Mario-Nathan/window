@@ -14,12 +14,12 @@ if (localStorage.getItem('savedPanes')) {
         cell1.textContent = saved[i].savedAs;
         cell2.textContent = saved[i].savedAt;
         cell3.textContent = 'Go!';
-        cell4.textContent = 'Delete';
+        cell4.textContent = 'X';
         cell4.addEventListener('click', function () {
             confirm('Do you want to delete your pane?');
             event.preventDefault;
             document.getElementById('panes').deleteRow(0);
-            localStorage.removeItem('requestedPane', JSON.stringify(saved[i]));
+            localStorage.removeItem('savedPanes');
         });
         cell3.addEventListener('click', function() {
             event.preventDefault;
