@@ -14,7 +14,6 @@ hr {
     padding: 0;
 }
 
-
 select {
 
     position: relative;
@@ -26,12 +25,12 @@ select {
 #popup{
     position: absolute;
     right: 29%;
-    top: 250px;
+    top: 350px;
     font-size:40px;
     color: lightgrey;
     width: 20px;
     margin: 1px;
-}
+    }
 
 #container2{
 display: block;
@@ -121,19 +120,6 @@ width: 600px;
 height: 220px;
 opacity: .65;
 border-radius: 10px;
-}
-
-#popup {
-    position: absolute;
-    top: 350px;
-    height: 60px;
-    width: 40px;
-}
-
-#popup p {
-    position: absolute;
-    height: 20px;
-    margin: 0;
 }
 
 #footer {

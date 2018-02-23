@@ -55,19 +55,7 @@ tbody tr:nth-child(even) {
 
 tbody tr:hover {
     background: rgba(184, 197, 255, 0.589);
-}
-
-tbody td:last-child {
-    background: whitesmoke;
-    color: white;
-    cursor: pointer;
-}
-
-tbody td:last-child:hover {
-    background: rgb(205, 238, 201);
-    color: black;
-    cursor: pointer;
-}
+} 
 
 h1{
     font-family: 'Ubuntu', sans-serif;
@@ -97,10 +85,10 @@ ul{
     display: inline;
    
 }
-a{
+/* a{
     text-decoration: none;
     color: rgb(75, 125, 141);
-}
+} */
 
 #footer {
     position:absolute;
