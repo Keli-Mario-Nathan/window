@@ -3,24 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Main Pane</title>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">    
     <link href="css/reset.css" type="text/css" rel="stylesheet">    
     <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="css/stylz.css" type="text/css">    
     <link href="https://fonts.googleapis.com/css?family=Lato:300|Ubuntu:300" rel="stylesheet">
 </head>
 <body>
-        <a href ="index.html"><h1>Pane Relief</h1></a>
+    <header>
         <nav>
-                <ul>
-                    <a href="pane.html" alt="home"><li>Main Pane</li></a>
-                    <a href="saved.html" alt="history"><li>My Panes</li></a>  
-                </ul>
-                </nav>
-                <hr>
+            <a href ="index.html"><h1>Pane Relief</h1></a>
+            <ul>
+                <a href="pane.html" alt="home"><li>Main Pane</li></a>
+                <a href="saved.html" id="my-panes-link" alt="history"><li>My Panes</li></a>  
+            </ul>
+        </nav>
+    </header>
+    <!-- <hr> -->
+<section id="main">
+<div id="container">
 
-<section id="test">      
-   
-    <div id="controls">
+</div>   
+   <div id="controls">
         <select id="choose">
             <option value="rain" selected>Rain</option> 
             <option value="snow">Snow</option>
@@ -35,13 +39,12 @@
             <div id="component-hue-slider"></div>
             <div id="component-sat-slider"></div>
             <div id="component-light-slider"></div>
-        <button type="button" id="save-button">Save</button>
+            <div id="save-pane">
+                <label for="pane-name">Name your pane: </label>
+                <input type="text" id="pane-name" name="pane-name" maxlength="30" placeholder="My Pane">
+                <button class="ui-button" type="button" id="save-button">Save</button>
+            </div>
     </div>
-
-    <div id="container">
-        
-        </div>
-
 </section>
 
 
