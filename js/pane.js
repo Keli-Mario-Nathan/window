@@ -1,7 +1,7 @@
 'use strict';
 
 const canvasWidth = 800;
-const canvasHeight = 600;
+const canvasHeight = 598;
 
 function randNum(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -52,11 +52,6 @@ function Weather(quantityCurrent, quantityMax, backgroundH, backgroundS, backgro
 Weather.prototype.collectComponents = function() {
     for (let i = 0; i < this.quantity.current; i++) {
         this.components.push(new Component());
-    }
-    if (this instanceof Snow) {
-        for (let i = 0; i < this.quantity.current; i++) {
-            this.components[i].hexStart = Math.random() * Math.PI / 3;
-        }
     }
 };
 
@@ -148,26 +143,119 @@ function Component() {
     this.colorL = randNum(scene.color.lightness.lower, scene.color.lightness.upper);
     this.xPosition = randNum(0 - this.size / 2, canvasWidth + this.size / 2);
     this.yPosition = randNum(0 - this.size / 2, canvasHeight + this.size / 2);
+    this.hexStart = Math.random() * Math.PI / 3;
 }
 
 const rainPane = new Rain(125, 400, 183, 4, 62, 3, 10, 4, 7, 2, 20, 4, 6, 185, 190, 90, 100, 65, 80);
 const snowPane = new Snow(60, 300, 183, 4, 86, 2, 6, 3, 5, 2, 20, 9, 12, 190, 210, 0, 20, 90, 100);
 const cloudPane = new Clouds(100, 200, 212, 79, 73, 0.1, 2, 0.2, 0.7, 100, 300, 130, 260, 200, 220, 0, 10, 90, 100);
 
-
 const dropdown = document.getElementById('choose');
 
 let scene = rainPane;
 dropdown.value = 'rain';
-$('#quantity-slider').slider();
-$('#bg-hue-slider').slider();
-$('#bg-sat-slider').slider();
-$('#bg-light-slider').slider();
-$('#speed-slider').slider();
-$('#size-slider').slider();
-$('#component-hue-slider').slider();
-$('#component-sat-slider').slider();
-$('#component-light-slider').slider();
+
+$('#quantity-slider').slider({
+    min: 1,
+    change: function(event, ui) {
+        if (scene.quantity.current > ui.value) {
+            scene.components.splice(ui.value);
+        } else if (scene.quantity.current < ui.value) {
+            for (let i = 0; i < (ui.value - scene.quantity.current); i++) {
+                scene.components.push(new Component());
+            }
+        }
+        scene.quantity.current = ui.value;
+    }
+});
+
+$('#bg-hue-slider').slider({
+    min: 0,
+    max: 360,
+    change: function(event, ui) {
+        scene.background.hue = ui.value;
+    }
+});
+
+$('#bg-sat-slider').slider({
+    min: 0,
+    max: 100,
+    change: function(event, ui) {
+        scene.background.saturation = ui.value;
+    }
+});
+
+$('#bg-light-slider').slider({
+    min: 0,
+    max: 100,
+    change: function(event, ui) {
+        scene.background.lightness = ui.value;
+    }
+});
+
+$('#speed-slider').slider({
+    range: true,
+    step: 0.1,
+    change: function(event, ui) {
+        for (let i = 0; i < scene.components.length; i++) {
+            scene.components[i].speed = randFloat(ui.values[0], ui.values[1]);
+        }
+        scene.speed.lower = ui.values[0];
+        scene.speed.upper = ui.values[1];
+    }
+});
+
+$('#size-slider').slider({
+    range: true,
+    step: 0.1,
+    change: function(event, ui) {
+        for (let i = 0; i < scene.components.length; i++) {
+            scene.components[i].size = randNum(ui.values[0], ui.values[1]);
+        }
+        scene.size.lower = ui.values[0];
+        scene.size.upper = ui.values[1];
+    }
+});
+
+$('#component-hue-slider').slider({
+    range: true,
+    min: 0,
+    max: 360,
+    change: function(event, ui) {
+        for (let i = 0; i < scene.components.length; i++) {
+            scene.components[i].colorH = randNum(ui.values[0], ui.values[1]);
+        }
+        scene.color.hue.lower = ui.values[0];
+        scene.color.hue.upper = ui.values[1];
+    }
+});
+
+$('#component-sat-slider').slider({
+    range: true,
+    min: 0,
+    max: 100,
+    change: function(event, ui) {
+        for (let i = 0; i < scene.components.length; i++) {
+            scene.components[i].colorS = randNum(ui.values[0], ui.values[1]);
+        }
+        scene.color.saturation.lower = ui.values[0];
+        scene.color.saturation.upper = ui.values[1];
+    }
+});
+
+$('#component-light-slider').slider({
+    range: true,
+    min: 0,
+    max: 100,
+    change: function(event, ui) {
+        for (let i = 0; i < scene.components.length; i++) {
+            scene.components[i].colorL = randNum(ui.values[0], ui.values[1]);
+        }
+        scene.color.lightness.lower = ui.values[0];
+        scene.color.lightness.upper = ui.values[1];
+    }
+});
+
 scene.setControls();
 createSliderLabels();
 fillSliderLabels();
@@ -177,19 +265,18 @@ if (localStorage.getItem('choice')) {
     case 'rain':
         scene = rainPane;
         dropdown.value = 'rain';
-        fillSliderLabels();
         break;
     case 'snow':
         scene = snowPane;
         dropdown.value = 'snow';
-        fillSliderLabels();
         break;
     case 'clouds':
         scene = cloudPane;
         dropdown.value = 'clouds';
-        fillSliderLabels();
         break;
     }
+    scene.setControls();
+    fillSliderLabels();
     localStorage.removeItem('choice');
 } else if (localStorage.getItem('requestedPane')) {
     const rawScene = JSON.parse(localStorage.getItem('requestedPane'));
@@ -197,23 +284,20 @@ if (localStorage.getItem('choice')) {
     switch (rawScene.weatherType) {
     case 'rain':
         scene = new Rain(rawScene.quantity.current, rawScene.quantity.max, rawScene.background.hue, rawScene.background.saturation, rawScene.background.lightness, rawScene.speed.min, rawScene.speed.max, rawScene.speed.lower, rawScene.speed.upper, rawScene.size.min, rawScene.size.max, rawScene.size.lower, rawScene.size.upper, rawScene.color.hue.lower, rawScene.color.hue.upper, rawScene.color.saturation.lower, rawScene.color.saturation.upper, rawScene.color.lightness.lower, rawScene.color.lightness.upper);
-        scene.savedAs = rawScene.savedAs;
         dropdown.value = 'rain';
-        fillSliderLabels();
         break;
     case 'snow':
         scene = new Snow(rawScene.quantity.current, rawScene.quantity.max, rawScene.background.hue, rawScene.background.saturation, rawScene.background.lightness, rawScene.speed.min, rawScene.speed.max, rawScene.speed.lower, rawScene.speed.upper, rawScene.size.min, rawScene.size.max, rawScene.size.lower, rawScene.size.upper, rawScene.color.hue.lower, rawScene.color.hue.upper, rawScene.color.saturation.lower, rawScene.color.saturation.upper, rawScene.color.lightness.lower, rawScene.color.lightness.upper);
-        scene.savedAs = rawScene.savedAs;
         dropdown.value = 'snow';
-        fillSliderLabels();
         break;
     case 'clouds':
         scene = new Clouds(rawScene.quantity.current, rawScene.quantity.max, rawScene.background.hue, rawScene.background.saturation, rawScene.background.lightness, rawScene.speed.min, rawScene.speed.max, rawScene.speed.lower, rawScene.speed.upper, rawScene.size.min, rawScene.size.max, rawScene.size.lower, rawScene.size.upper, rawScene.color.hue.lower, rawScene.color.hue.upper, rawScene.color.saturation.lower, rawScene.color.saturation.upper, rawScene.color.lightness.lower, rawScene.color.lightness.upper);
-        scene.savedAs = rawScene.savedAs;
         dropdown.value = 'clouds';
-        fillSliderLabels();
         break;
     }
+    scene.savedAs = rawScene.savedAs;
+    scene.setControls();
+    fillSliderLabels();
 }
 
 
@@ -227,7 +311,6 @@ function setup() { //eslint-disable-line
 
 function draw() { //eslint-disable-line
     scene.render();
-    // noLoop();
 }
 
 $( function() {
@@ -237,18 +320,16 @@ $( function() {
             switch (ui.item.value) {
             case 'rain':
                 scene = rainPane;
-                fillSliderLabels();
                 break;
             case 'snow':
                 scene = snowPane;
-                fillSliderLabels();
                 break;
             case 'clouds':
                 scene = cloudPane;
-                fillSliderLabels();
                 break;
             }
             scene.setControls();
+            fillSliderLabels();
             if (scene.components.length === 0) {
                 scene.collectComponents();
             }
@@ -257,10 +338,16 @@ $( function() {
 });
 
 const saveButton = document.getElementById('save-button');
+const nameInput = document.getElementById('pane-name');
+const myPanesLink = document.getElementById('my-panes-link');
 saveButton.addEventListener('click', function() {
-    scene.savedAs = prompt('Give your pane a name:');
+    myPanesLink.classList.add('animated-link');
+    myPanesLink.addEventListener('animationend', function() {
+        myPanesLink.classList.remove('animated-link');
+    });
+    scene.savedAs = nameInput.value;
     if (!scene.savedAs) {
-        scene.savedAs = 'myPane';
+        scene.savedAs = 'My Pane';
     }
     scene.savedAt = moment().format('LLL'); //eslint-disable-line
     if (localStorage.getItem('savedPanes')) {
@@ -270,132 +357,6 @@ saveButton.addEventListener('click', function() {
     } else {
         localStorage.setItem('savedPanes', JSON.stringify([scene]));
     }
-});
-
-$(function() {
-    $('#quantity-slider').slider({
-        min: 1,
-        max: scene.quantity.max,
-        change: function(event, ui) {
-            if (scene.quantity.current > ui.value) {
-                scene.components.splice(ui.value);
-            } else if (scene.quantity.current < ui.value) {
-                for (let i = 0; i < (ui.value - scene.quantity.current); i++) {
-                    scene.components.push(new Component());
-                }
-            }
-            scene.quantity.current = ui.value;
-        }
-    });
-});
-
-$(function() {
-    $('#bg-hue-slider').slider({
-        min: 0,
-        max: 360,
-        change: function(event, ui) {
-            scene.background.hue = ui.value;
-        }
-    });
-});
-
-$(function() {
-    $('#bg-sat-slider').slider({
-        min: 0,
-        max: 100,
-        change: function(event, ui) {
-            scene.background.saturation = ui.value;
-        }
-    });
-});
-
-$(function() {
-    $('#bg-light-slider').slider({
-        min: 0,
-        max: 100,
-        change: function(event, ui) {
-            scene.background.lightness = ui.value;
-        }
-    });
-});
-
-$(function() {
-    $('#speed-slider').slider({
-        range: true,
-        min: scene.speed.min,
-        max: scene.speed.max,
-        values: [scene.speed.lower, scene.speed.upper],
-        step: 0.1,
-        change: function(event, ui) {
-            for (let i = 0; i < scene.components.length; i++) {
-                scene.components[i].speed = randFloat(ui.values[0], ui.values[1]);
-            }
-            scene.speed.lower = ui.values[0];
-            scene.speed.upper = ui.values[1];
-        }
-    });
-});
-
-$(function() {
-    $('#size-slider').slider({
-        range: true,
-        min: scene.size.min,
-        max: scene.size.max,
-        values: [scene.size.lower, scene.size.upper],
-        step: 0.1,
-        change: function(event, ui) {
-            for (let i = 0; i < scene.components.length; i++) {
-                scene.components[i].size = randNum(ui.values[0], ui.values[1]);
-            }
-            scene.size.lower = ui.values[0];
-            scene.size.upper = ui.values[1];
-        }
-    });
-});
-
-$(function() {
-    $('#component-hue-slider').slider({
-        range: true,
-        min: 0,
-        max: 360,
-        change: function(event, ui) {
-            for (let i = 0; i < scene.components.length; i++) {
-                scene.components[i].colorH = randNum(ui.values[0], ui.values[1]);
-            }
-            scene.color.hue.lower = ui.values[0];
-            scene.color.hue.upper = ui.values[1];
-        }
-    });
-});
-
-$(function() {
-    $('#component-sat-slider').slider({
-        range: true,
-        min: 0,
-        max: 100,
-        change: function(event, ui) {
-            for (let i = 0; i < scene.components.length; i++) {
-                scene.components[i].colorS = randNum(ui.values[0], ui.values[1]);
-            }
-            scene.color.saturation.lower = ui.values[0];
-            scene.color.saturation.upper = ui.values[1];
-        }
-    });
-});
-
-$(function() {
-    $('#component-light-slider').slider({
-        range: true,
-        min: 0,
-        max: 100,
-        change: function(event, ui) {
-            for (let i = 0; i < scene.components.length; i++) {
-                scene.components[i].colorL = randNum(ui.values[0], ui.values[1]);
-            }
-            scene.color.lightness.lower = ui.values[0];
-            scene.color.lightness.upper = ui.values[1];
-        }
-    });
 });
 
 function createSliderLabels() {
