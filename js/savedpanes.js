@@ -16,13 +16,12 @@ if (localStorage.getItem('savedPanes')) {
         cell4.textContent = 'X';
         cell4.addEventListener('click', function () {
             event.preventDefault;
-            confirm('Do you want to delete your pane?');
-            if (true){
+            const result = confirm('Do you want to delete your pane?');
+            if(result == true){
                 document.getElementById('panes').deleteRow(0);
                 localStorage.removeItem('savedPanes');
-            } else if (false){
-                return;
             }
+
         });
         cell3.addEventListener('click', function() {
             event.preventDefault;
