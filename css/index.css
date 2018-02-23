@@ -30,7 +30,7 @@ select {
     color: lightgrey;
     width: 20px;
     margin: 1px;
-    }
+}
 
 #container2{
 display: block;
@@ -106,11 +106,9 @@ strong{
     font-weight:10px;
 }
 
-
 p{
 padding: 20px;
 }
-
 
 #popup:hover + #invisible{
 display: block;
