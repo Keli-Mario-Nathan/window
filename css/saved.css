@@ -10,7 +10,7 @@ table {
     right: 150px;
     margin: 0 auto;
     table-layout: fixed;
-    width: 80%;
+    width: 1040px;
     line-height: 2em;
 }
 
@@ -32,7 +32,17 @@ th {
 th:last-child {
     width: 10em;
 }
-  
+
+th:first-child {
+    /* background-color: white; */
+    width: 80px;
+}
+
+/* td:first-child {
+    background-color: white;
+    width: 80px;
+}
+   */
 td {
     text-align: center;
     color: rgb(153, 150, 150);
@@ -40,6 +50,12 @@ td {
 
 td:hover{
     color: black;
+}
+
+td img {
+    position: relative;
+    /* left: -290px; */
+    top: 4px;
 }
 
 tbody tr:nth-child(odd) {

@@ -1,7 +1,7 @@
 'use strict';
 
 const canvasWidth = 800;
-const canvasHeight = 598;
+const canvasHeight = 596;
 
 function randNum(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -11,40 +11,155 @@ function randFloat(min, max) {
     return parseFloat((Math.random() * (max - min) + min).toFixed(1));
 }
 
-function Weather(quantityCurrent, quantityMax, backgroundH, backgroundS, backgroundL, speedMin, speedMax, speedLower, speedUpper, sizeMin, sizeMax, sizeLower, sizeUpper, colorHLower, colorHUpper, colorSLower, colorSUpper, colorLLower, colorLUpper) {
-    this.components = [];
-    this.quantity = {
-        current: quantityCurrent,
-        max: quantityMax
-    };
-    this.background = {
-        hue: backgroundH,
-        saturation: backgroundS,
-        lightness: backgroundL
-    };
-    this.speed = {
-        min: speedMin,
-        max: speedMax,
-        lower: speedLower,
-        upper: speedUpper
-    };
-    this.size = {
-        min: sizeMin,
-        max: sizeMax,
-        lower: sizeLower,
-        upper: sizeUpper};
-    this.color = {
+const defaultRain = {
+    quantity: {
+        current: 125,
+        max: 400
+    },
+    background: {
+        hue: 183,
+        saturation: 4,
+        lightness: 62
+    },
+    speed: {
+        min: 3,
+        max: 10,
+        lower: 4,
+        upper: 7
+    },
+    size: {
+        min: 2,
+        max: 20,
+        lower: 4,
+        upper: 6
+    },
+    color: {
         hue: {
-            lower: colorHLower,
-            upper: colorHUpper
+            lower: 185,
+            upper: 190
         },
         saturation: {
-            lower: colorSLower,
-            upper: colorSUpper
+            lower: 90,
+            upper: 100
         },
         lightness: {
-            lower: colorLLower,
-            upper: colorLUpper
+            lower: 65,
+            upper: 80
+        }
+    }
+};
+
+const defaultSnow = {
+    quantity: {
+        current: 60,
+        max: 300
+    },
+    background: {
+        hue: 183,
+        saturation: 4,
+        lightness: 86
+    },
+    speed: {
+        min: 2,
+        max: 6,
+        lower: 3,
+        upper: 5
+    },
+    size: {
+        min: 2,
+        max: 20,
+        lower: 9,
+        upper: 12
+    },
+    color: {
+        hue: {
+            lower: 190,
+            upper: 210
+        },
+        saturation: {
+            lower: 0,
+            upper: 20
+        },
+        lightness: {
+            lower: 90,
+            upper: 100
+        }
+    }
+};
+
+const defaultClouds = {
+    quantity: {
+        current: 100,
+        max: 200
+    },
+    background: {
+        hue: 212,
+        saturation: 69,
+        lightness: 81
+    },
+    speed: {
+        min: 0.1,
+        max: 2,
+        lower: 0.2,
+        upper: 0.7
+    },
+    size: {
+        min: 100,
+        max: 300,
+        lower: 130,
+        upper: 260
+    },
+    color: {
+        hue: {
+            lower: 200,
+            upper: 220
+        },
+        saturation: {
+            lower: 0,
+            upper: 10
+        },
+        lightness: {
+            lower: 90,
+            upper: 100
+        }
+    }
+};
+
+function Weather(weatherObject) {
+    this.components = [];
+    this.quantity = {
+        current: weatherObject.quantity.current,
+        max: weatherObject.quantity.max
+    };
+    this.background = {
+        hue: weatherObject.background.hue,
+        saturation: weatherObject.background.saturation,
+        lightness: weatherObject.background.lightness
+    };
+    this.speed = {
+        min: weatherObject.speed.min,
+        max: weatherObject.speed.max,
+        lower: weatherObject.speed.lower,
+        upper: weatherObject.speed.upper
+    };
+    this.size = {
+        min: weatherObject.size.min,
+        max: weatherObject.size.max,
+        lower: weatherObject.size.lower,
+        upper: weatherObject.size.upper
+    };
+    this.color = {
+        hue: {
+            lower: weatherObject.color.hue.lower,
+            upper: weatherObject.color.hue.upper
+        },
+        saturation: {
+            lower: weatherObject.color.saturation.lower,
+            upper: weatherObject.color.saturation.upper
+        },
+        lightness: {
+            lower: weatherObject.color.lightness.lower,
+            upper: weatherObject.color.lightness.upper
         }
     };
 }
@@ -72,8 +187,8 @@ Weather.prototype.setControls = function() {
     $('#component-light-slider').slider('option', 'values', [this.color.lightness.lower, this.color.lightness.upper]);
 };
 
-function Rain(quantityCurrent, quantityMax, backgroundH, backgroundS, backgroundL, speedMin, speedMax, speedLower, speedUpper, sizeMin, sizeMax, sizeLower, sizeUpper, colorHLower, colorHUpper, colorSLower, colorSUpper, colorLLower, colorLUpper) {
-    Weather.call(this, quantityCurrent, quantityMax, backgroundH, backgroundS, backgroundL, speedMin, speedMax, speedLower, speedUpper, sizeMin, sizeMax, sizeLower, sizeUpper, colorHLower, colorHUpper, colorSLower, colorSUpper, colorLLower, colorLUpper);
+function Rain(weatherObject) {
+    Weather.call(this, weatherObject);
     this.weatherType = 'rain';
 }
 
@@ -93,12 +208,18 @@ Rain.prototype.render = function() {
     }
 };
 
-function Snow(quantityCurrent, quantityMax, backgroundH, backgroundS, backgroundL, speedMin, speedMax, speedLower, speedUpper, sizeMin, sizeMax, sizeLower, sizeUpper, colorHLower, colorHUpper, colorSLower, colorSUpper, colorLLower, colorLUpper) {
-    Weather.call(this, quantityCurrent, quantityMax, backgroundH, backgroundS, backgroundL, speedMin, speedMax, speedLower, speedUpper, sizeMin, sizeMax, sizeLower, sizeUpper, colorHLower, colorHUpper, colorSLower, colorSUpper, colorLLower, colorLUpper);
+function Snow(weatherObject) {
+    Weather.call(this, weatherObject);
     this.weatherType = 'snow';
 }
 
 Snow.prototype = Object.create(Weather.prototype);
+
+Snow.prototype.collectComponents = function() {
+    for (let i = 0; i < this.quantity.current; i++) {
+        this.components.push(new Component(Math.random() * Math.PI / 3));
+    }
+};
 
 Snow.prototype.render = function() {
     background(this.background.hue, this.background.saturation, this.background.lightness);
@@ -107,15 +228,15 @@ Snow.prototype.render = function() {
         fill(flake.colorH, flake.colorS, flake.colorL);
         hexagon(flake.xPosition, flake.yPosition, flake.size, flake.hexStart);
         flake.yPosition += flake.speed;
-        if (flake.yPosition - flake.size / 2 > canvasHeight) {
-            flake.yPosition = 0 - flake.size / 2;
+        if (flake.yPosition - flake.size > canvasHeight) {
+            flake.yPosition = 0 - flake.size;
             flake.xPosition = randNum(0, canvasWidth + flake.size);
         }
     }
 };
 
-function Clouds(quantityCurrent, quantityMax, backgroundH, backgroundS, backgroundL, speedMin, speedMax, speedLower, speedUpper, sizeMin, sizeMax, sizeLower, sizeUpper, colorHLower, colorHUpper, colorSLower, colorSUpper, colorLLower, colorLUpper) {
-    Weather.call(this, quantityCurrent, quantityMax, backgroundH, backgroundS, backgroundL, speedMin, speedMax, speedLower, speedUpper, sizeMin, sizeMax, sizeLower, sizeUpper, colorHLower, colorHUpper, colorSLower, colorSUpper, colorLLower, colorLUpper);
+function Clouds(weatherObject) {
+    Weather.call(this, weatherObject);
     this.weatherType = 'clouds';
 }
 
@@ -135,7 +256,7 @@ Clouds.prototype.render = function() {
     }
 };
 
-function Component() {
+function Component(hexStart) {
     this.size = randNum(scene.size.lower, scene.size.upper);
     this.speed = randFloat(scene.speed.lower, scene.speed.upper);
     this.colorH = randNum(scene.color.hue.lower, scene.color.hue.upper);
@@ -143,16 +264,15 @@ function Component() {
     this.colorL = randNum(scene.color.lightness.lower, scene.color.lightness.upper);
     this.xPosition = randNum(0 - this.size / 2, canvasWidth + this.size / 2);
     this.yPosition = randNum(0 - this.size / 2, canvasHeight + this.size / 2);
-    this.hexStart = Math.random() * Math.PI / 3;
+    this.hexStart = hexStart || null;
 }
 
-const rainPane = new Rain(125, 400, 183, 4, 62, 3, 10, 4, 7, 2, 20, 4, 6, 185, 190, 90, 100, 65, 80);
-const snowPane = new Snow(60, 300, 183, 4, 86, 2, 6, 3, 5, 2, 20, 9, 12, 190, 210, 0, 20, 90, 100);
-const cloudPane = new Clouds(100, 200, 212, 79, 73, 0.1, 2, 0.2, 0.7, 100, 300, 130, 260, 200, 220, 0, 10, 90, 100);
-
-const dropdown = document.getElementById('choose');
+const rainPane = new Rain(defaultRain);
+const snowPane = new Snow(defaultSnow);
+const cloudPane = new Clouds(defaultClouds);
 
 let scene = rainPane;
+const dropdown = document.getElementById('choose');
 dropdown.value = 'rain';
 
 $('#quantity-slider').slider({
@@ -256,9 +376,8 @@ $('#component-light-slider').slider({
     }
 });
 
-scene.setControls();
 createSliderLabels();
-fillSliderLabels();
+configureControls();
 
 if (localStorage.getItem('choice')) {
     switch (localStorage.getItem('choice')) {
@@ -275,29 +394,27 @@ if (localStorage.getItem('choice')) {
         dropdown.value = 'clouds';
         break;
     }
-    scene.setControls();
-    fillSliderLabels();
+    configureControls();
     localStorage.removeItem('choice');
 } else if (localStorage.getItem('requestedPane')) {
     const rawScene = JSON.parse(localStorage.getItem('requestedPane'));
     localStorage.removeItem('requestedPane');
     switch (rawScene.weatherType) {
     case 'rain':
-        scene = new Rain(rawScene.quantity.current, rawScene.quantity.max, rawScene.background.hue, rawScene.background.saturation, rawScene.background.lightness, rawScene.speed.min, rawScene.speed.max, rawScene.speed.lower, rawScene.speed.upper, rawScene.size.min, rawScene.size.max, rawScene.size.lower, rawScene.size.upper, rawScene.color.hue.lower, rawScene.color.hue.upper, rawScene.color.saturation.lower, rawScene.color.saturation.upper, rawScene.color.lightness.lower, rawScene.color.lightness.upper);
+        scene = new Rain(rawScene);
         dropdown.value = 'rain';
         break;
     case 'snow':
-        scene = new Snow(rawScene.quantity.current, rawScene.quantity.max, rawScene.background.hue, rawScene.background.saturation, rawScene.background.lightness, rawScene.speed.min, rawScene.speed.max, rawScene.speed.lower, rawScene.speed.upper, rawScene.size.min, rawScene.size.max, rawScene.size.lower, rawScene.size.upper, rawScene.color.hue.lower, rawScene.color.hue.upper, rawScene.color.saturation.lower, rawScene.color.saturation.upper, rawScene.color.lightness.lower, rawScene.color.lightness.upper);
+        scene = new Snow(rawScene);
         dropdown.value = 'snow';
         break;
     case 'clouds':
-        scene = new Clouds(rawScene.quantity.current, rawScene.quantity.max, rawScene.background.hue, rawScene.background.saturation, rawScene.background.lightness, rawScene.speed.min, rawScene.speed.max, rawScene.speed.lower, rawScene.speed.upper, rawScene.size.min, rawScene.size.max, rawScene.size.lower, rawScene.size.upper, rawScene.color.hue.lower, rawScene.color.hue.upper, rawScene.color.saturation.lower, rawScene.color.saturation.upper, rawScene.color.lightness.lower, rawScene.color.lightness.upper);
+        scene = new Clouds(rawScene);
         dropdown.value = 'clouds';
         break;
     }
     scene.savedAs = rawScene.savedAs;
-    scene.setControls();
-    fillSliderLabels();
+    configureControls();
 }
 
 
@@ -316,7 +433,6 @@ function draw() { //eslint-disable-line
 $( function() {
     $('#choose').selectmenu({
         select: function(event, ui) {
-            console.log(ui.item.value);
             switch (ui.item.value) {
             case 'rain':
                 scene = rainPane;
@@ -328,8 +444,7 @@ $( function() {
                 scene = cloudPane;
                 break;
             }
-            scene.setControls();
-            fillSliderLabels();
+            configureControls();
             if (scene.components.length === 0) {
                 scene.collectComponents();
             }
@@ -337,10 +452,11 @@ $( function() {
     });
 });
 
-const saveButton = document.getElementById('save-button');
+const form = document.getElementsByTagName('form')[0];
 const nameInput = document.getElementById('pane-name');
 const myPanesLink = document.getElementById('my-panes-link');
-saveButton.addEventListener('click', function() {
+form.addEventListener('submit', function() {
+    event.preventDefault();
     myPanesLink.classList.add('animated-link');
     myPanesLink.addEventListener('animationend', function() {
         myPanesLink.classList.remove('animated-link');
@@ -357,6 +473,7 @@ saveButton.addEventListener('click', function() {
     } else {
         localStorage.setItem('savedPanes', JSON.stringify([scene]));
     }
+    this.reset();
 });
 
 function createSliderLabels() {
@@ -392,6 +509,11 @@ function fillSliderLabels() {
     for (let i = 0; i < sliderLabels.length; i++) {
         p[i].textContent = sliderLabels[i];
     }
+}
+
+function configureControls() {
+    fillSliderLabels();
+    scene.setControls();
 }
 
 function hexagon(x, y, radius, a) {
