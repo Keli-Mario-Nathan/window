@@ -6,18 +6,19 @@
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link href="css/reset.css" type="text/css" rel="stylesheet">
     <link href="css/index.css" type="text/css" rel="stylesheet">
+    <link href="css/header.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:300|Ubuntu:300" rel="stylesheet">
 </head>
 <body>
     <header>
         <nav>
-        <h1>Pane Relief</h1>
-        <ul>
-            <a href="pane.html" alt="home"><li>Main Pane</li></a>
-            <a href="saved.html" alt="history"><li>My Panes</li></a>  
-        </ul>
-    </nav>
+            <a href ="index.html"><h1>Pane Relief</h1></a>
+            <ul>
+                <a href="pane.html" alt="home"><li>Main Pane</li></a>
+                <a href="saved.html" id="my-panes-link" alt="history"><li>My Panes</li></a>  
+            </ul>
+        </nav>
     </header>
     <section id="super">
         <div id="container2">
@@ -30,22 +31,23 @@
                 </select>
             </form>
         </div>
-        <div id="popup">
-            <p>...</p>
-        </div>
-        <div id="invisible">
-            <p>
-                Greetings and Welcome to <strong>Pane Relief</strong>..... 
-                <br>
-                <br>
-                Your personalized perspective on a world that you can control!
-                <br>
-                <br>
-                Start by selecting a basic weather profile and continue to adjust the features
-                on the following page to suit, or change your mood.
-                <br>
-            </p>
-        </div>
+        <section id="about">
+            <div id="popup">
+                <p>...</p>
+            </div>
+            <div id="invisible">
+                <p>
+                    Greetings and Welcome to <strong>Pane Relief</strong>..... 
+                </p>
+                <p>
+                    Your personalized perspective on a world that you can control!
+                </p>
+                <p>
+                    Start by selecting a basic weather profile and continue to adjust the features
+                    on the following page to suit, or change your mood.
+                </p>
+            </div>
+        </section>
     </section>
     
     <script src="js/jquery-3.3.1.min.js"></script>
@@ -57,7 +59,7 @@
     <div id="footer">
         
 <footer>
-  <p>Team KMN is: Keli Hansen, Mario Quintana and Nathan Sandberg. & copy 2018</p>
+  <p>Team KMN is: Keli Hansen, Mario Quintana and Nathan Sandberg. &copy; 2018</p>
 </footer>
 </div>
 

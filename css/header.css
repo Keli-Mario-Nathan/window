@@ -1,0 +1,33 @@
+header {
+    width: 98%;
+    margin: 0 auto 32px auto;
+    padding-top: 45px;
+    border-bottom: 2px solid rgb(167, 165, 165);
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 1040px;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(75, 125, 141);
+    font-weight: bold;
+}
+
+h1 {
+    font-family: 'Ubuntu', sans-serif;
+    color: rgb(100, 100, 100);
+    margin: 0px;
+    font-size: 40px;
+}
+
+header li {
+    font-size: 1.2em;
+    display: inline;
+    margin-left: 48px;
+}
