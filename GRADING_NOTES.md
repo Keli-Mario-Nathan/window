@@ -7,6 +7,6 @@ CSS
 - Looks good! There's a tiny bit of spacing inconsistencies, but other than that looks good. Nice job using sibling selectors and pseudo-classes.
 
 JS
-
+- Awesome job creating classes for your types of weather! On the flip side, the code working with the pane itself wasn't object oriented at all.
 
 HTML

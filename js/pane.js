@@ -125,6 +125,13 @@ const defaultClouds = {
     }
 };
 
+/*
+    Since we have so many classes, let's give their code some space
+    and move them into their own files: Weather.js, Rain.js, Snow.js, etc
+
+    This will clean up our pane.js file so it mostly consists of 
+    a pane's behavior logic.
+*/
 function Weather(weatherObject) {
     this.components = [];
     this.quantity = {
@@ -192,6 +199,22 @@ function Rain(weatherObject) {
     this.weatherType = 'rain';
 }
 
+/*
+    Yay inheritance!
+
+    There is an additional step of resetting Rain's prototype.constructor property.
+    I don't think it will affect your app (it doesn't seem to right now), but it's good practice/good to be aware of.
+
+    We would reset it after the below line:
+    Rain.prototype.constructor = Rain;
+
+    An example use-case of when it would affect our code is if we wanted a copy method
+    on our Rain objects, that create new Rain objects by calling
+
+    this.constructor();
+
+    If we left it point to Weather, we could create Weather objects instead of Rain.
+*/
 Rain.prototype = Object.create(Weather.prototype);
 
 Rain.prototype.render = function() {
@@ -243,6 +266,21 @@ function Clouds(weatherObject) {
 Clouds.prototype = Object.create(Weather.prototype);
 
 Clouds.prototype.render = function() {
+    /*
+        There's a bit of similarity between all the render methods on your sub-classes-
+        if/when there's more, we would move the repeated code into a method on Weather: Weather.render
+        and call that from each of the sub-classes before modifying what we need to, 
+        using the keyword: super
+
+        Weather.prototype.render = function () {
+            background(this.background.hue, this.background.saturation, this.background.lightness);
+        };
+
+        Then here:
+        super.render();
+
+        And after that any code that needs to be different.
+    */
     background(this.background.hue, this.background.saturation, this.background.lightness);
     for (let i = 0; i < this.components.length; i++) {
         const cloud = this.components[i];
@@ -267,6 +305,19 @@ function Component(hexStart) {
     this.hexStart = hexStart || null;
 }
 
+
+
+/*
+    A lot of work being done in the global scope here -
+    this would be a great place to create an object literal, maybe called pane,
+    to hold all the info and behavior of our window pane:
+        - what the current weather is
+        - the set up of attaching event handlers
+        - whatever else
+
+    Getting it out of our global space and into an object makes it
+    easier to come back to later and understand how these 100s of lines relate.
+*/
 const rainPane = new Rain(defaultRain);
 const snowPane = new Snow(defaultSnow);
 const cloudPane = new Clouds(defaultClouds);
@@ -278,7 +329,7 @@ dropdown.value = 'rain';
 $('#quantity-slider').slider({
     min: 1,
     change: function(event, ui) {
-        if (scene.quantity.current > ui.value) {
+        if (scene.quantity.currentrt > ui.value) {
             scene.components.splice(ui.value);
         } else if (scene.quantity.current < ui.value) {
             for (let i = 0; i < (ui.value - scene.quantity.current); i++) {
@@ -313,6 +364,11 @@ $('#bg-light-slider').slider({
     }
 });
 
+/*
+    These sliders look very similar! We could refactor them 
+    to use a for loop somehow.
+
+*/
 $('#speed-slider').slider({
     range: true,
     step: 0.1,

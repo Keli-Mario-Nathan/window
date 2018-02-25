@@ -9,6 +9,9 @@ buildTable();
 function buildTable() {
     if (localStorage.getItem('savedPanes')) {
         for (let i = 0; i < saved.length; i++) {
+            /*
+                Nice find!
+            */
             const row = tbody.insertRow();
             const cell1 = row.insertCell();
             const cell2 = row.insertCell();
