@@ -12,7 +12,7 @@
 <body>
     <header>
         <nav>
-            <a href ="index.html"><h1>Pane Relief</h1></a>
+            <a href="index.html"><h1>Pane Relief</h1></a>
             <ul>
                 <a href="pane.html" alt="home"><li>Main Pane</li></a>
                 <a href="saved.html" id="my-panes-link" alt="history"><li>My Panes</li></a>  
@@ -34,12 +34,13 @@
         </table>
     </section>
 
+    <!-- It would make sense to use just the <footer> tag instead of a div here. -->
     <div id="footer">
-
-            <footer>
-              <p>Team KMN is: Keli Hansen, Mario Quintana and Nathan Sandberg. &copy; 2018</p>
-            </footer>
-            </div>
+        <footer>
+            <p>Team KMN is: Keli Hansen, Mario Quintana and Nathan Sandberg. &copy; 2018</p>
+        </footer>
+    </div>
+    <!-- Your script tag should be inside <body>. The browser is smart enough to move it there when it renders, but we should do it here. -->
+    <script src="js/savedpanes.js"></script>
 </body>
-<script src="js/savedpanes.js"></script>
 </html>

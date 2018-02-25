@@ -8,5 +8,7 @@ CSS
 
 JS
 - Awesome job creating classes for your types of weather! On the flip side, the code working with the pane itself wasn't object oriented at all.
+- See the files for any additional comments.
 
 HTML
+- See the files for detailed comments! Only a couple issues with indentation and your script tags.
