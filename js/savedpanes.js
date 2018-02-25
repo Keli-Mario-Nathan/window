@@ -3,7 +3,6 @@
 const tbody = document.getElementById('panes');
 const saved = JSON.parse(localStorage.getItem('savedPanes'));
 
-cleanSavedArray();
 buildTable();
 
 function buildTable() {
@@ -21,6 +20,7 @@ function buildTable() {
             xOut.addEventListener('click', function(){
                 if (confirm('Remove pane forever?')) {
                     row.remove();
+                    // in hindsight, probably should have just redrawn the table :)
                     saved[i] = 'removed';
                 }
             });
@@ -37,7 +37,7 @@ function buildTable() {
 
 window.addEventListener('beforeunload', function() {
     cleanSavedArray();
-    if (saved.length === 0) {
+    if (!saved.length) {
         localStorage.removeItem('savedPanes');
     } else {
         localStorage.setItem('savedPanes', JSON.stringify(saved));
@@ -46,12 +46,16 @@ window.addEventListener('beforeunload', function() {
 
 function cleanSavedArray() {
     const toRemove = [];
-    if (saved) {
+    if (saved.length) {
         for (let i = 0; i < saved.length; i++) {
             if (saved[i] === 'removed') {
                 toRemove.push(i);
             }
         }
+        // thanks to https://stackoverflow.com/questions/9425009/remove-multiple-elements-from-array-in-javascript-jquery for sorting tip
+        toRemove.sort(function(a, b) {
+            return b - a;
+        });
         for (let i = 0; i < toRemove.length; i++) {
             saved.splice(toRemove[i], 1);
         }
