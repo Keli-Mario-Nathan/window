@@ -5,7 +5,7 @@ header {
     border-bottom: 2px solid rgb(167, 165, 165);
 }
 
-nav{
+nav {
     display: flex;
     justify-content: space-between;
     align-items: baseline;

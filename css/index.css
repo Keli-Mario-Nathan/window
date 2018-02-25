@@ -1,8 +1,8 @@
-body{
+body {
    font-family: 'Lato', sans-serif;
 }
 
-#super{ 
+#super { 
    width: 500px;
    margin: 180px auto 0 auto;
 }
@@ -14,18 +14,18 @@ select {
     -webkit-appearance:none;
 }
 
-.ui-widget{
+.ui-widget {
     font-family: 'Lato', sans-serif;
 }
 
-.ui-selectmenu-text{
+.ui-selectmenu-text {
     text-align: center;
     font-family: 'Lato', sans-serif;
     font-size: 30px;
     margin-top: 5px;
 }
     
-#choices-button{
+#choices-button {
     margin: 0px auto;
     width: 400px;
     height:50px;
@@ -37,14 +37,14 @@ select {
     top: 17px;
 }
 
-#invisible{
+#invisible {
     display: none;
     line-height: 30px;
     color: rgb(19, 18, 18);
     right: 25%;
 }
 
-#popup{
+#popup {
     width: 100px;
     margin: -50px 0 0 auto;
     font-size:40px;
@@ -56,11 +56,11 @@ select {
     position: relative;
 }
 
-strong{
+strong {
     font-weight:10px;
 }
 
-#popup:hover + #invisible{
+#popup:hover + #invisible {
     position: absolute;
     left: 0;
     margin-top: -20px;
