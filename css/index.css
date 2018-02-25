@@ -74,12 +74,4 @@ strong{
     padding: 0 20px;
 }
 
-#footer {
-    position:fixed;
-    bottom:0;
-    width:100%;
-    height:20px; 
-    font-size: 14px;
-    padding: 0 0 20px 10px;
-    background-color: white;
- }
+

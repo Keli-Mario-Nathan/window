@@ -105,3 +105,8 @@ input {
         bottom: 0px;
     }
 }
+
+footer a {
+    text-decoration: none;
+    color: rgb(75, 125, 141);
+}
